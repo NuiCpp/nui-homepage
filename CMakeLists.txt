@@ -1,28 +1,41 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(nui-template VERSION 0.1.0)
+project(nui-homepage VERSION 0.1.0)
 
 # Nui Dependency
-include (${CMAKE_CURRENT_LIST_DIR}/_cmake/dependencies/nui.cmake)
+add_subdirectory(dependencies/Nui)
 include (${CMAKE_CURRENT_LIST_DIR}/_cmake/common_options.cmake)
 
 # Add executable (sources are added later, depending on frontend/backend)
-add_executable(${PROJECT_NAME})
-set_common_options(${PROJECT_NAME})
 
 set(PREJS_FILE ${CMAKE_SOURCE_DIR}/frontend/source/frontend/js/module.js)
 
 if (EMSCRIPTEN)
+    add_executable(nui-homepage)
+    set_common_options(nui-homepage)
+
 	# Link frontend of nui inside of emscripten
-	target_link_libraries(${PROJECT_NAME} PRIVATE nui-frontend)
+	target_link_libraries(nui-homepage PRIVATE nui-frontend)
+
+    add_custom_target(
+        nui-homepage-copy-wasm
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_BINARY_DIR}/bin/index.wasm ${CMAKE_BINARY_DIR}/../bin/index.wasm
+        COMMAND stat -c %s ${CMAKE_BINARY_DIR}/bin/index.wasm | numfmt --to=iec
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        BYPRODUCTS ${CMAKE_BINARY_DIR}/../bin/index.wasm
+    )
+    add_dependencies(nui-homepage-copy-wasm nui-homepage-parcel)
   
 	nui_prepare_emscripten_target(
 		TARGET
-			${PROJECT_NAME}
+			nui-homepage
         PARCEL_ARGS
             # --no-optimize
+            --dist-dir=${CMAKE_BINARY_DIR}/../bin
 		PREJS
 			${PREJS_FILE}
+        UNPACKED_MODE
+            on
 		EMSCRIPTEN_LINK_OPTIONS
             -sEXPORTED_FUNCTIONS=_frontendMain
             -O2
@@ -33,28 +46,21 @@ if (EMSCRIPTEN)
             -O3
             # -g
 	)
-  
+
     add_subdirectory(${CMAKE_SOURCE_DIR}/frontend/source/frontend)
 else()
-    # Link backend of nui outside of emscripten
-    target_link_libraries(${PROJECT_NAME} PRIVATE nui-backend)
-
-    nui_set_target_output_directories(${PROJECT_NAME})
-
-    # Creates a target that is compiled through emscripten. This target becomes the frontend part.
-	nui_add_emscripten_target(${PROJECT_NAME}
-		TARGET
-			${PROJECT_NAME}
-		PREJS 
-            ${PREJS_FILE}
-		SOURCE_DIR
-			${CMAKE_SOURCE_DIR}
-		CMAKE_OPTIONS
-            # I recommend to work with a release build by default because debug builds get big fast.
-            -DCMAKE_BUILD_TYPE=Release
-		MAKE_OPTIONS
-			# VERBOSE=1
-	)
-
-	add_subdirectory(${CMAKE_SOURCE_DIR}/backend/source/backend)
+    add_library(nui-homepage INTERFACE)
+ 
+     # Creates a target that is compiled through emscripten. This target becomes the frontend part.
+     nui_add_emscripten_target(nui-homepage
+         TARGET
+             nui-homepage
+         PREJS 
+             ${PREJS_FILE}
+         SOURCE_DIR
+             ${CMAKE_SOURCE_DIR}
+         CMAKE_OPTIONS
+         MAKE_OPTIONS
+            nui-homepage nui-homepage-copy-wasm
+     )
 endif()

@@ -2,10 +2,11 @@
 
 #include <nui/frontend/elements.hpp>
 
-Nui::ElementRenderer MainPage::render() {
-  using namespace Nui;
-  using namespace Nui::Elements;
-  using Nui::Elements::div; // because of the global div.
+Nui::ElementRenderer MainPage::render()
+{
+    using namespace Nui;
+    using namespace Nui::Elements;
+    using Nui::Elements::div; // because of the global div.
 
-  return body{}("Hello World");
+    return body{}("Hello World 2");
 }
