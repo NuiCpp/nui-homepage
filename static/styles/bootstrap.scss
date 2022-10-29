@@ -1,0 +1,44 @@
+$gap: 5px;
+
+$primary: #649AD2;
+$secondary: #6c757d;
+$success: #28a745;
+$danger: #dc3545;
+$warning: #ffc107;
+$info: #17a2b8;
+$light: #f8f9fa;
+$dark: #343a40;
+
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+);
+
+$body-bg: #404040;
+$body-bg-dark1: mix($body-bg, black, 80%);
+$body-bg-dark2: mix($body-bg, black, 60%);
+$body-color: #ddd;
+$border-radius: 0px;
+$form-check-input-bg: #aaa;
+
+// dropdown
+$dropdown-bg: $body-bg-dark1;
+$dropdown-link-color: $body-color;
+$dropdown-link-hover-bg: $dropdown-bg;
+$dropdown-link-active-bg: $dropdown-bg;
+$dropdown-link-hover-color: $primary;
+$dropdown-link-active-color: $primary;
+
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+@import "../../node_modules/bootstrap/scss/dropdown";
+
+// Bootstrap individual components

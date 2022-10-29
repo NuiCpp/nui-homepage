@@ -4,7 +4,10 @@
     "version": "1.0.0",
     "watch": {
         "build": {
-            "patterns": ["static", "frontend"],
+            "patterns": [
+                "static",
+                "frontend"
+            ],
             "extensions": "js,mjs,scss,html,css,cpp,hpp",
             "delay": 1000
         }
@@ -16,10 +19,15 @@
     "devDependencies": {
         "npm-watch": "^0.11.0",
         "parcel": "^2.7.0",
-        "parcel-reporter-static-files-copy": "^1.4.0"
+        "parcel-reporter-static-files-copy": "^1.4.0",
+        "rimraf": "^3.0.2"
     },
     "staticFiles": {
         "staticPath": "static/assets",
         "staticOutPath": "assets"
+    },
+    "dependencies": {
+        "@popperjs/core": "^2.11.6",
+        "bootstrap": "^5.2.2"
     }
 }

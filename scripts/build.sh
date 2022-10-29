@@ -29,6 +29,8 @@ mkdir -p build
 mkdir -p ${BUILD_DIR}
 cd ${BUILD_DIR}
 
+#rm -r bin/*
+
 export CXX=$COMPILER
 export CC=$CCOMPILER
 

@@ -2,7 +2,11 @@
 
 #include <frontend/navigation_bar.hpp>
 
+#include <nui/frontend/api/console.hpp>
 #include <nui/frontend/elements.hpp>
+#include <nui/frontend/utility/fragment_listener.hpp>
+
+using namespace std::string_literals;
 
 namespace NuiPage
 {
@@ -10,11 +14,15 @@ namespace NuiPage
     struct MainPage::Implementation
     {
         NavigationBar navBar;
+
+        Nui::Observed<std::string> fragment;
     };
     // #####################################################################################################################
     MainPage::MainPage()
         : impl_{std::make_unique<Implementation>()}
-    {}
+    {
+        Nui::listenToFragmentChanges(impl_->fragment);
+    }
     //---------------------------------------------------------------------------------------------------------------------
     MainPage::~MainPage() = default;
     //---------------------------------------------------------------------------------------------------------------------
@@ -30,7 +38,18 @@ namespace NuiPage
 
         // clang-format off
         return body{}(
-            impl_->navBar()
+            impl_->navBar(),
+            switch_(impl_->fragment)(
+                default_()(
+                    div{}("Default")
+                ),
+                case_("")(
+                    div{}("Page")
+                ),
+                case_("about")(
+                    div{}("About")
+                )
+            )
         );
         // clang-format on
     }

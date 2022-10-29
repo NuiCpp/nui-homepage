@@ -31,7 +31,7 @@ if (EMSCRIPTEN)
             -sEXPORTED_FUNCTIONS=_frontendMain
             -O2
 			-sALLOW_MEMORY_GROWTH=1 
-            # -g
+            # -g -sNO_DISABLE_EXCEPTION_CATCHING
             # or other options, see emscripten docs.
         EMSCRIPTEN_COMPILE_OPTIONS
             -O3

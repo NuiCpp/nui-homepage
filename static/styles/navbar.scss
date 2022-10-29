@@ -1,5 +1,36 @@
+@import "./bootstrap.scss";
+
 #navBar {
     display: flex;
-    height: 5rem;
-    border-bottom: 1px solid black;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+#navMainIcon {
+    /*Placeholder for now*/
+    width: 48px;
+    height: 48px;
+    background-color: blue;
+}
+#navIconText {
+    text-decoration: none;
+    color: $body-color;
+}
+#navIconArea {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: $gap;
+    padding-right: calc(3 * $gap);
+    gap: $gap;
+}
+#navLinks {
+    display: flex;
+    align-items: center;
+    gap: calc(3 * $gap);
+    padding: $gap;
+    padding-left: calc(3 * $gap);
+}
+#navLinks > div > a,
+#navLinks > a {
+    text-decoration: none;
+    color: $body-color;
 }
