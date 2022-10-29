@@ -2,13 +2,24 @@
     "description": "",
     "name": "nui-template",
     "version": "1.0.0",
+    "watch": {
+        "build": {
+            "patterns": ["static", "frontend"],
+            "extensions": "js,mjs,scss,html,css,cpp,hpp",
+            "delay": 1000
+        }
+    },
+    "scripts": {
+        "build": "bash scripts/build.sh",
+        "watch": "npm-watch"
+    },
     "devDependencies": {
+        "npm-watch": "^0.11.0",
         "parcel": "^2.7.0",
         "parcel-reporter-static-files-copy": "^1.4.0"
     },
     "staticFiles": {
         "staticPath": "static/assets",
-        "staticOutPath": "assets",
-        "distDir": "../bin"
+        "staticOutPath": "assets"
     }
 }

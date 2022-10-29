@@ -1,12 +1,38 @@
 #include <frontend/main_page.hpp>
 
+#include <frontend/navigation_bar.hpp>
+
 #include <nui/frontend/elements.hpp>
 
-Nui::ElementRenderer MainPage::render()
+namespace NuiPage
 {
-    using namespace Nui;
-    using namespace Nui::Elements;
-    using Nui::Elements::div; // because of the global div.
+    // #####################################################################################################################
+    struct MainPage::Implementation
+    {
+        NavigationBar navBar;
+    };
+    // #####################################################################################################################
+    MainPage::MainPage()
+        : impl_{std::make_unique<Implementation>()}
+    {}
+    //---------------------------------------------------------------------------------------------------------------------
+    MainPage::~MainPage() = default;
+    //---------------------------------------------------------------------------------------------------------------------
+    MainPage::MainPage(MainPage&&) = default;
+    //---------------------------------------------------------------------------------------------------------------------
+    MainPage& MainPage::operator=(MainPage&&) = default;
+    //---------------------------------------------------------------------------------------------------------------------
+    Nui::ElementRenderer MainPage::render()
+    {
+        using namespace Nui;
+        using namespace Nui::Elements;
+        using Nui::Elements::div; // because of the global div.
 
-    return body{}("Hello World 2");
+        // clang-format off
+        return body{}(
+            impl_->navBar()
+        );
+        // clang-format on
+    }
+    // #####################################################################################################################
 }

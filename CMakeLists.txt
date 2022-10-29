@@ -16,15 +16,6 @@ if (EMSCRIPTEN)
 
 	# Link frontend of nui inside of emscripten
 	target_link_libraries(nui-homepage PRIVATE nui-frontend)
-
-    add_custom_target(
-        nui-homepage-copy-wasm
-        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_BINARY_DIR}/bin/index.wasm ${CMAKE_BINARY_DIR}/../bin/index.wasm
-        COMMAND stat -c %s ${CMAKE_BINARY_DIR}/bin/index.wasm | numfmt --to=iec
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        BYPRODUCTS ${CMAKE_BINARY_DIR}/../bin/index.wasm
-    )
-    add_dependencies(nui-homepage-copy-wasm nui-homepage-parcel)
   
 	nui_prepare_emscripten_target(
 		TARGET
@@ -61,6 +52,5 @@ else()
              ${CMAKE_SOURCE_DIR}
          CMAKE_OPTIONS
          MAKE_OPTIONS
-            nui-homepage nui-homepage-copy-wasm
      )
 endif()

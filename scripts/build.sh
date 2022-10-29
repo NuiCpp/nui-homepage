@@ -7,7 +7,7 @@
 COMPILER=clang++
 CCOMPILER=clang
 LINKER=lld
-THREADS=1
+THREADS=32
 BUILD_TYPE=Debug
 
 while getopts b:j: opts; do

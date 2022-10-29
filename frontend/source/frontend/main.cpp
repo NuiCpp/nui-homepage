@@ -5,13 +5,17 @@
 
 #include <nui/frontend/dom/dom.hpp>
 
-extern "C" void EMSCRIPTEN_KEEPALIVE frontendMain() {
-  thread_local MainPage mainPage;
-  thread_local Nui::Dom::Dom dom;
-  dom.setBody(mainPage.render());
+extern "C" void EMSCRIPTEN_KEEPALIVE frontendMain()
+{
+    using namespace NuiPage;
+
+    thread_local MainPage mainPage;
+    thread_local Nui::Dom::Dom dom;
+    dom.setBody(mainPage.render());
 }
 
-EMSCRIPTEN_BINDINGS(nui_example_frontend) {
-  emscripten::function("main", &frontendMain);
+EMSCRIPTEN_BINDINGS(nui_example_frontend)
+{
+    emscripten::function("main", &frontendMain);
 }
 #include <nui/frontend/bindings.hpp>

@@ -3,5 +3,8 @@
   "reporters": [
     "...",
     "parcel-reporter-static-files-copy"
-  ]
+  ],
+  "transformers": {
+    "*.ico": ["@parcel/transformer-raw"]
+  }
 }
