@@ -3,6 +3,7 @@
 #include <frontend/navigation_bar.hpp>
 
 #include <nui/frontend/api/console.hpp>
+#include <nui/frontend/attributes.hpp>
 #include <nui/frontend/elements.hpp>
 #include <nui/frontend/utility/fragment_listener.hpp>
 
@@ -34,20 +35,26 @@ namespace NuiPage
     {
         using namespace Nui;
         using namespace Nui::Elements;
+        using namespace Nui::Attributes;
         using Nui::Elements::div; // because of the global div.
 
         // clang-format off
         return body{}(
             impl_->navBar(),
-            switch_(impl_->fragment)(
-                default_()(
-                    div{}("Default")
-                ),
-                case_("")(
-                    div{}("Page")
-                ),
-                case_("about")(
-                    div{}("About")
+            // "Nui.Router" so to speak
+            div{
+                id = "mainPageContent"
+            }(
+                switch_(impl_->fragment)(
+                    Elements::default_()(fragment(
+                        "Hi"
+                    )),
+                    case_("")(fragment(
+                        "Page"
+                    )),
+                    case_("about")(fragment(
+                        "About" 
+                    ))
                 )
             )
         );

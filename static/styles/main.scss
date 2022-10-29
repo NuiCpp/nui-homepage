@@ -35,3 +35,8 @@ body {
     background: $body-bg;
     color: $body-color;
 }
+
+#mainPageContent {
+    padding: $gap;
+    padding-top: calc(3 * $gap);
+}
