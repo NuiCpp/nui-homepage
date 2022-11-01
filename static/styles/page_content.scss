@@ -1,0 +1,74 @@
+@import "./bootstrap.scss";
+
+#pageContent {
+    display: flex;
+    flex-direction: column;
+}
+
+#titleBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#pageTitle {
+    font: 700 3em/1 "Oswald", sans-serif;
+    letter-spacing: 0;
+    padding: 0.8em 0 0em;
+    display: block;
+    margin: 0 auto;
+    -webkit-text-fill-color: transparent;
+
+    // background gradient
+    background: linear-gradient(270deg, $primary, #0ece1e);
+    background-size: 400% 400%;
+    background-clip: text;
+
+    -webkit-animation: TitleAnimation 21s ease infinite;
+    -moz-animation: TitleAnimation 21s ease infinite;
+    animation: TitleAnimation 21s ease infinite;
+    filter: drop-shadow(2px 4px 3px rgba(0, 0, 0, 0.5))
+        drop-shadow(0px -1px 1px rgba(255, 255, 255, 0.5));
+}
+
+#pageSubtitle {
+    font: 400 1.3em "Oswald", sans-serif;
+    padding-bottom: 0.8em;
+    color: $secondary;
+}
+
+#cardArea {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 2em;
+    padding: 2em;
+    width: 100%;
+}
+
+/* Animate Background Image */
+@keyframes TitleAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#subTitleControls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1em;
+}

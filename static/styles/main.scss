@@ -6,37 +6,15 @@
     box-sizing: border-box;
 }
 
-html {
-    font-size: 16px;
-    $font-family-sans-serif:
-        // Cross-platform generic font family (default user interface font)
-        system-ui,
-        // Safari for macOS and iOS (San Francisco)
-        -apple-system,
-        // Windows
-        "Segoe UI",
-        // Android
-        Roboto,
-        // Basic web fallback
-        "Helvetica Neue",
-        Arial,
-        // Linux
-        "Noto Sans",
-        "Liberation Sans",
-        // Sans serif fallback
-        sans-serif,
-        // Emoji fonts
-        "Apple Color Emoji",
-        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
-}
-
 body {
     margin: 0;
     background: $body-bg;
     color: $body-color;
+    font-size: 16px;
+    font: 1rem/1.5 "Open Sans", sans-serif;
 }
 
-#mainPageContent {
+#PageFrameContent {
     padding: $gap;
     padding-top: calc(3 * $gap);
 }

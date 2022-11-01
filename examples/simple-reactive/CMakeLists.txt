@@ -1,34 +1,29 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(nui-homepage VERSION 0.1.0)
-
-# Nui Dependency
-add_subdirectory(dependencies/Nui)
-include (${CMAKE_CURRENT_LIST_DIR}/_cmake/common_options.cmake)
-
-add_subdirectory(examples/simple-reactive)
+project(simple-reactive VERSION 0.1.0)
 
 # Add executable (sources are added later, depending on frontend/backend)
 
 set(PREJS_FILE ${CMAKE_SOURCE_DIR}/frontend/source/frontend/js/module.js)
 
+add_executable(simple-reactive)
+
 if (EMSCRIPTEN)
-    add_executable(nui-homepage)
-    set_common_options(nui-homepage)
+    set_common_options(simple-reactive)
 
 	# Link frontend of nui inside of emscripten
-	target_link_libraries(nui-homepage PRIVATE nui-frontend)
+	target_link_libraries(simple-reactive PRIVATE nui-frontend)
   
 	nui_prepare_emscripten_target(
 		TARGET
-			nui-homepage
+			simple-reactive
         PARCEL_ARGS
             # --no-optimize
             --dist-dir=${CMAKE_BINARY_DIR}/../bin
 		PREJS
 			${PREJS_FILE}
         UNPACKED_MODE
-            on
+            off
 		EMSCRIPTEN_LINK_OPTIONS
             -sEXPORTED_FUNCTIONS=_frontendMain
             -O2
@@ -40,14 +35,12 @@ if (EMSCRIPTEN)
             # -g
 	)
 
-    add_subdirectory(${CMAKE_SOURCE_DIR}/frontend/source/frontend)
-else()
-    add_library(nui-homepage INTERFACE)
- 
+    target_sources(simple-reactive PRIVATE front.cpp)
+else() 
      # Creates a target that is compiled through emscripten. This target becomes the frontend part.
-     nui_add_emscripten_target(nui-homepage
+     nui_add_emscripten_target(simple-reactive
          TARGET
-             nui-homepage
+             simple-reactive
          PREJS 
              ${PREJS_FILE}
          SOURCE_DIR
@@ -55,4 +48,6 @@ else()
          CMAKE_OPTIONS
          MAKE_OPTIONS
      )
+
+     target_sources(simple-reactive PRIVATE main.cpp)
 endif()

@@ -8,7 +8,7 @@
                 "static",
                 "frontend"
             ],
-            "extensions": "js,mjs,scss,html,css,cpp,hpp",
+            "extensions": "js,mjs,scss,html,css,cpp,hpp,txt",
             "delay": 1000
         }
     },

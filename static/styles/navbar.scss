@@ -3,6 +3,7 @@
 #navBar {
     display: flex;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    background: linear-gradient(to bottom, $body-bg-dark1, $body-bg-dark2);
 }
 #navMainIcon {
     /*Placeholder for now*/

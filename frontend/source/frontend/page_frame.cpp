@@ -1,5 +1,6 @@
-#include <frontend/main_page.hpp>
+#include <frontend/page_frame.hpp>
 
+#include <frontend/main_content.hpp>
 #include <frontend/navigation_bar.hpp>
 
 #include <nui/frontend/api/console.hpp>
@@ -12,26 +13,27 @@ using namespace std::string_literals;
 namespace NuiPage
 {
     // #####################################################################################################################
-    struct MainPage::Implementation
+    struct PageFrame::Implementation
     {
         NavigationBar navBar;
+        MainContent mainContent;
 
         Nui::Observed<std::string> fragment;
     };
     // #####################################################################################################################
-    MainPage::MainPage()
+    PageFrame::PageFrame()
         : impl_{std::make_unique<Implementation>()}
     {
         Nui::listenToFragmentChanges(impl_->fragment);
     }
     //---------------------------------------------------------------------------------------------------------------------
-    MainPage::~MainPage() = default;
+    PageFrame::~PageFrame() = default;
     //---------------------------------------------------------------------------------------------------------------------
-    MainPage::MainPage(MainPage&&) = default;
+    PageFrame::PageFrame(PageFrame&&) = default;
     //---------------------------------------------------------------------------------------------------------------------
-    MainPage& MainPage::operator=(MainPage&&) = default;
+    PageFrame& PageFrame::operator=(PageFrame&&) = default;
     //---------------------------------------------------------------------------------------------------------------------
-    Nui::ElementRenderer MainPage::render()
+    Nui::ElementRenderer PageFrame::render()
     {
         using namespace Nui;
         using namespace Nui::Elements;
@@ -43,16 +45,16 @@ namespace NuiPage
             impl_->navBar(),
             // "Nui.Router" so to speak
             div{
-                id = "mainPageContent"
+                id = "pageFrameContent"
             }(
                 switch_(impl_->fragment)(
-                    Elements::default_()(fragment(
+                    Elements::default_()(div{}(
                         "Hi"
                     )),
-                    case_("")(fragment(
-                        "Page"
+                    case_("")(div{}(
+                        impl_->mainContent()
                     )),
-                    case_("about")(fragment(
+                    case_("about")(div{}(
                         "About" 
                     ))
                 )

@@ -1,4 +1,4 @@
-#include <frontend/main_page.hpp>
+#include <frontend/page_frame.hpp>
 
 #include <nui/core.hpp>
 #include <nui/window.hpp>
@@ -9,9 +9,9 @@ extern "C" void EMSCRIPTEN_KEEPALIVE frontendMain()
 {
     using namespace NuiPage;
 
-    thread_local MainPage mainPage;
+    thread_local PageFrame pageFrame;
     thread_local Nui::Dom::Dom dom;
-    dom.setBody(mainPage.render());
+    dom.setBody(pageFrame.render());
 }
 
 EMSCRIPTEN_BINDINGS(nui_example_frontend)

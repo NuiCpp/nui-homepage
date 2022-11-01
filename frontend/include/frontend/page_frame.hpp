@@ -6,15 +6,15 @@
 
 namespace NuiPage
 {
-    class MainPage
+    class PageFrame
     {
       public:
-        MainPage();
-        ~MainPage();
-        MainPage(const MainPage&) = delete;
-        MainPage& operator=(const MainPage&) = delete;
-        MainPage(MainPage&&);
-        MainPage& operator=(MainPage&&);
+        PageFrame();
+        ~PageFrame();
+        PageFrame(const PageFrame&) = delete;
+        PageFrame& operator=(const PageFrame&) = delete;
+        PageFrame(PageFrame&&);
+        PageFrame& operator=(PageFrame&&);
 
         Nui::ElementRenderer render();
 

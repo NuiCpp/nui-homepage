@@ -1,6 +1,6 @@
 $gap: 5px;
 
-$primary: #649AD2;
+$primary: #1c72cf;
 $secondary: #6c757d;
 $success: #28a745;
 $danger: #dc3545;
@@ -9,23 +9,25 @@ $info: #17a2b8;
 $light: #f8f9fa;
 $dark: #343a40;
 
-$theme-colors: (
-  "primary":    $primary,
-  "secondary":  $secondary,
-  "success":    $success,
-  "info":       $info,
-  "warning":    $warning,
-  "danger":     $danger,
-  "light":      $light,
-  "dark":       $dark
-);
-
-$body-bg: #404040;
-$body-bg-dark1: mix($body-bg, black, 80%);
-$body-bg-dark2: mix($body-bg, black, 60%);
+$body-bg: #252525;
+$body-bg-dark1: mix($body-bg, black, 95%);
+$body-bg-dark2: mix($body-bg, black, 70%);
 $body-color: #ddd;
 $border-radius: 0px;
+$border-radius-sm: 0px;
+$border-radius-lg: 0px;
 $form-check-input-bg: #aaa;
+
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "dark": $dark,
+);
 
 // dropdown
 $dropdown-bg: $body-bg-dark1;
@@ -40,5 +42,6 @@ $dropdown-link-active-color: $primary;
 @import "../../node_modules/bootstrap/scss/mixins";
 
 @import "../../node_modules/bootstrap/scss/dropdown";
+@import "../../node_modules/bootstrap/scss/buttons";
 
 // Bootstrap individual components
