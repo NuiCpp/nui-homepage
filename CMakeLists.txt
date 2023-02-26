@@ -6,7 +6,7 @@ project(nui-homepage VERSION 0.1.0)
 add_subdirectory(dependencies/Nui)
 include (${CMAKE_CURRENT_LIST_DIR}/_cmake/common_options.cmake)
 
-add_subdirectory(examples/simple-reactive)
+# add_subdirectory(examples/simple-reactive)
 
 # Add executable (sources are added later, depending on frontend/backend)
 

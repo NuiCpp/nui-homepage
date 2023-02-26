@@ -7,7 +7,7 @@
 COMPILER=clang++
 CCOMPILER=clang
 LINKER=lld
-THREADS=32
+THREADS=$(nproc)
 BUILD_TYPE=Debug
 
 while getopts b:j: opts; do
@@ -35,15 +35,11 @@ export CXX=$COMPILER
 export CC=$CCOMPILER
 
 CMAKE_GENERATOR="Unix Makefiles"
-if [[ ! -z "${MSYSTEM}" ]]; then
-  CMAKE_GENERATOR="MSYS Makefiles"
-  if [[ $CCOMPILER == clang ]]; then
-    IS_MSYS2_CLANG=on
-  fi
-fi
-
 CMAKE_CXX_FLAGS=""
 if [[ ! -z "${MSYSTEM}" ]]; then
+  # Emscripten doesn't work with more than 1 thread on windows
+  THREADS=1
+  CMAKE_GENERATOR="MSYS Makefiles"
   if [[ $CCOMPILER == clang ]]; then
     CMAKE_CXX_FLAGS="-fuse-ld=lld"
   fi
