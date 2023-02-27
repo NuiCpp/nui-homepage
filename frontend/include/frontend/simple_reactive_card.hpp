@@ -1,12 +1,14 @@
 #pragma once
 
+#include <frontend/basic_card.hpp>
+
 #include <nui/frontend/generator_typedefs.hpp>
 
 #include <memory>
 
 namespace NuiPage
 {
-    class SimpleReactiveCard
+    class SimpleReactiveCard : public BasicCard
     {
       public:
         SimpleReactiveCard();

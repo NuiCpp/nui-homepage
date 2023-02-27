@@ -1,9 +1,35 @@
 @import "./bootstrap.scss";
 
+#cardArea {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 2em;
+    padding: 2em;
+    width: 100%;
+}
+
+#cardArea .visible:nth-child(even) {
+    transform: translateX(2rem) !important; 
+}
+#cardArea .visible:nth-child(odd) {
+    transform: translateX(-2rem) !important;
+}
+
 .card {
     display: flex;
-    flex-direction: column;
-    width: 70%;
+    flex-direction: row;
+    width: 85%;
+    border: solid 1px rgba(255, 255, 255, .1);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);
+    overflow: scroll;
+    opacity: 0;
+    transform: translateX(-100%);
+    filter: blur(5px);
+    transition: all 1s;
 }
 
 .card-source {
@@ -13,11 +39,18 @@
 
 .card-content {
     flex: 50%;
+    align-items: baseline;
 }
 
 #simpleReactiveCardContent {
     display: flex;
     flex-direction: row;
-    vertical-align: text-bottom;
     gap: $gap;
+    padding: $gap;
+}
+
+@media(prefers-reduced-motion) {
+    .card {
+        transition: none;
+    }
 }

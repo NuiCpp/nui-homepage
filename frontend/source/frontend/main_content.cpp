@@ -1,6 +1,6 @@
 #include <frontend/main_content.hpp>
 
-#include <frontend/example_card.hpp>
+#include <frontend/simple_reactive_card.hpp>
 
 #include <nui/frontend/attributes.hpp>
 #include <nui/frontend/elements.hpp>
@@ -10,7 +10,9 @@ namespace NuiPage
     // #####################################################################################################################
     struct MainContent::Implementation
     {
-        ExampleCard card1;
+        SimpleReactiveCard card1;
+        SimpleReactiveCard card2;
+        SimpleReactiveCard card3;
     };
     // #####################################################################################################################
     MainContent::MainContent()
@@ -47,7 +49,8 @@ namespace NuiPage
                 }("Get Started")
             ),
             div{id = "cardArea"}(
-                impl_->card1()
+                impl_->card1(),
+                impl_->card2()
             )
         );
         // clang-format on

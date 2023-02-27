@@ -27,17 +27,47 @@ namespace NuiPage
         using Nui::Elements::span;
         using Nui::Elements::div; // because of the global div.
 
-        thread_local Observed<int> counter = 0;
+        std::shared_ptr<Observed<int>> counter = std::make_shared<Observed<int>>(0);
 
         // clang-format off
         return div{
             class_ = "card"
         }(
             // source
+            Nui::Dom::reference([](auto&& weakElementPtr){
+                auto element = weakElementPtr.lock();
+                if (!element)
+                    return;
+
+                emscripten::val::global("setupCardFlyin")(element->val());
+            }),
             div{
                 class_ = "card-source"
             }(
-                ""
+                Nui::Dom::reference([](auto&& weakElementPtr){
+                    auto element = weakElementPtr.lock();
+                    if (!element)
+                        return;
+
+                    auto source = removeIndentation(R"(
+                        thread_local Observed<int> counter = 0;
+
+                        div{}(
+                            button{
+                                onClick = []{ ++counter; }
+                            }("Increment"),
+                            button{
+                                onClick = []{ counter = 0; }
+                            }("Clear"),
+                            div{}(
+                                span{}("Counter: "), 
+                                span{}(counter)
+                            )
+                        )
+                    )");
+
+                    emscripten::val::global("createCodeMirror")(element->val(), emscripten::val{source}, emscripten::val{true});
+                })
             ),
             // what the source generates
             div{
@@ -45,16 +75,16 @@ namespace NuiPage
                 id = "simpleReactiveCardContent"
             }(
                 button{
-                    onClick = []{ ++counter; },
+                    onClick = [counter]{ ++*counter; },
                     class_ = "btn btn-primary"
-                }("Increment Counter"),
+                }("Increment"),
                 button{
-                    onClick = []{ counter = 0; },
+                    onClick = [counter]{ *counter = 0; },
                     class_ = "btn btn-primary"
-                }("Clear Counter"),
+                }("Clear"),
                 div{}(
                     span{}("Counter: "), 
-                    span{}(counter)
+                    span{}(*counter)
                 )
             )
         );

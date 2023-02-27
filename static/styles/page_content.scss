@@ -39,18 +39,6 @@
     color: $secondary;
 }
 
-#cardArea {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    gap: 2em;
-    padding: 2em;
-    width: 100%;
-}
-
 /* Animate Background Image */
 @keyframes TitleAnimation {
     0% {

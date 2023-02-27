@@ -27,7 +27,16 @@
         "staticOutPath": "assets"
     },
     "dependencies": {
+        "@codemirror/lang-cpp": "^6.0.2",
+        "@codemirror/state": "^6.2.0",
+        "@lezer/common": "^1.0.2",
         "@popperjs/core": "^2.11.6",
-        "bootstrap": "^5.2.2"
+        "bootstrap": "^5.2.2",
+        "codemirror": "^6.0.1"
+    },
+    "overrides": {
+        "@codemirror/lang-cpp": {
+            "@lezer/common": "$@lezer/common"
+        }
     }
 }

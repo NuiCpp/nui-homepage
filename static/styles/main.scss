@@ -18,3 +18,8 @@ body {
     padding: $gap;
     padding-top: calc(3 * $gap);
 }
+
+.visible {
+    opacity: 1 !important;
+    filter: blur(0) !important;
+}
