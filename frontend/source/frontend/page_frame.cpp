@@ -10,6 +10,8 @@
 
 using namespace std::string_literals;
 
+MAKE_HTML_VALUE_ATTRIBUTE_RENAME(data_ribbon, "data-ribbon")
+
 namespace NuiPage
 {
     // #####################################################################################################################
@@ -58,7 +60,13 @@ namespace NuiPage
                         "About" 
                     ))
                 )
-            )
+            ),
+            a{
+                class_ = "github-fork-ribbon",
+                href = "https://github.com/NuiCpp/Nui",
+                data_ribbon = "Fork me on GitHub",
+                Nui::Attributes::title = "Fork me on GitHub"
+            }("Fork me on GitHub")            
         );
         // clang-format on
     }

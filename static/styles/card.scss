@@ -85,3 +85,9 @@
         transition: none;
     }
 }
+
+@media (max-width: 500px) {
+    .card-body {
+        flex-direction: row;
+    }
+}
