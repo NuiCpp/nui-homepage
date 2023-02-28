@@ -33,58 +33,79 @@ namespace NuiPage
         return div{
             class_ = "card"
         }(
-            // source
-            Nui::Dom::reference([](auto&& weakElementPtr){
+            Nui::Dom::reference([](auto&& weakElementPtr){                
                 auto element = weakElementPtr.lock();
                 if (!element)
                     return;
 
                 emscripten::val::global("setupCardFlyin")(element->val());
             }),
-            div{
-                class_ = "card-source"
-            }(
-                Nui::Dom::reference([](auto&& weakElementPtr){
-                    auto element = weakElementPtr.lock();
-                    if (!element)
-                        return;
+            div{}
+            (
+                div{
+                    class_ = "card-header"
+                }(
+                    h2{
+                        class_ = "card-title"
+                    }("View Updates Reactively"),
+                    p{
+                        class_ = "card-subtitle"
+                    }(
+                        "The Nui library allows you to create reactive views."
+                        "This means that when the data changes, the view will automatically update."
+                        "This is done by using the Observed class."
+                        "The Observed class is a wrapper around a value that allows you to observe changes to the value."
+                    )
+                ),
+                div{
+                    class_ = "card-body"
+                }(
+                    div{
+                        class_ = "card-source"
+                    }(
+                        Nui::Dom::reference([](auto&& weakElementPtr){
+                            auto element = weakElementPtr.lock();
+                            if (!element)
+                                return;
 
-                    auto source = removeIndentation(R"(
-                        thread_local Observed<int> counter = 0;
+                            auto source = removeIndentation(R"(
+                                thread_local Observed<int> counter = 0;
 
+                                div{}(
+                                    button{
+                                        onClick = []{ ++counter; }
+                                    }("Increment"),
+                                    button{
+                                        onClick = []{ counter = 0; }
+                                    }("Clear"),
+                                    div{}(
+                                        span{}("Counter: "), 
+                                        span{}(counter)
+                                    )
+                                )
+                            )");
+
+                            emscripten::val::global("createCodeMirror")(element->val(), emscripten::val{source}, emscripten::val{true});
+                        })
+                    ),
+                    // what the source generates
+                    div{
+                        class_ = "card-content",
+                        id = "simpleReactiveCardContent"
+                    }(
+                        button{
+                            onClick = [counter]{ ++*counter; },
+                            class_ = "btn btn-primary"
+                        }("Increment"),
+                        button{
+                            onClick = [counter]{ *counter = 0; },
+                            class_ = "btn btn-primary"
+                        }("Clear"),
                         div{}(
-                            button{
-                                onClick = []{ ++counter; }
-                            }("Increment"),
-                            button{
-                                onClick = []{ counter = 0; }
-                            }("Clear"),
-                            div{}(
-                                span{}("Counter: "), 
-                                span{}(counter)
-                            )
+                            span{}("Counter: "), 
+                            span{}(*counter)
                         )
-                    )");
-
-                    emscripten::val::global("createCodeMirror")(element->val(), emscripten::val{source}, emscripten::val{true});
-                })
-            ),
-            // what the source generates
-            div{
-                class_ = "card-content",
-                id = "simpleReactiveCardContent"
-            }(
-                button{
-                    onClick = [counter]{ ++*counter; },
-                    class_ = "btn btn-primary"
-                }("Increment"),
-                button{
-                    onClick = [counter]{ *counter = 0; },
-                    class_ = "btn btn-primary"
-                }("Clear"),
-                div{}(
-                    span{}("Counter: "), 
-                    span{}(*counter)
+                    )
                 )
             )
         );

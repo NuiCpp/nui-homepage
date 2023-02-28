@@ -19,17 +19,48 @@
     transform: translateX(-2rem) !important;
 }
 
-.card {
-    display: flex;
-    flex-direction: row;
-    width: 85%;
-    border: solid 1px rgba(255, 255, 255, .1);
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);
-    overflow: scroll;
+#cardArea .card:nth-child(even) {
     opacity: 0;
     transform: translateX(-100%);
     filter: blur(5px);
     transition: all 1s;
+    transition-delay: 200ms;
+}
+#cardArea .card:nth-child(odd) {
+    opacity: 0;
+    transform: translateX(100%);
+    filter: blur(5px);
+    transition: all 1s;
+    transition-delay: 200ms;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-header {
+    padding: $gap;
+    border-bottom: 1px solid $dark;
+}
+
+.card-subtitle {
+    margin-bottom: 0;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 0;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    border: solid 1px $dark;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);
+    overflow: scroll;
 }
 
 .card-source {
