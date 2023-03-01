@@ -44,6 +44,7 @@ namespace NuiPage
                 Observed<std::string>& textContent;
             };
 
+            // Component:
             auto prettyBox(PrettyBoxArgs const& args) /* -> Nui::ElementRenderer */
             {
                 // clang-format off
