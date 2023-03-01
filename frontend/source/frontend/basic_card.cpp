@@ -1,9 +1,77 @@
 #include <frontend/basic_card.hpp>
 
+#include <nui/frontend/attributes.hpp>
+#include <nui/frontend/elements.hpp>
+
 #include <algorithm>
 
 namespace NuiPage
 {
+    // #####################################################################################################################
+    Nui::ElementRenderer BasicCard::operator()() const
+    {
+        using namespace Nui;
+        using namespace Nui::Elements;
+        using namespace Nui::Attributes;
+        using Nui::Elements::span;
+        using Nui::Elements::div; // because of the global div.
+
+        // clang-format off
+        return div{
+            class_ = "card"
+        }(
+            Nui::Dom::reference([](auto&& weakElementPtr){                
+                auto element = weakElementPtr.lock();
+                if (!element)
+                    return;
+
+                emscripten::val::global("setupCardFlyin")(element->val());
+            }),
+            div{}
+            (
+                div{
+                    class_ = "card-header"
+                }(
+                    h2{
+                        class_ = "card-title"
+                    }(
+                        header()
+                    ),
+                    p{
+                        class_ = "card-subtitle"
+                    }(
+                        description()
+                    )
+                ),
+                div{
+                    class_ = "card-body"
+                }(
+                    div{
+                        class_ = "card-source"
+                    }(
+                        Nui::Dom::reference([weak = weak_from_this()](auto&& weakElementPtr){
+                            auto element = weakElementPtr.lock();
+                            if (!element)
+                                return;
+                            auto self = weak.lock();
+                            if (!self)
+                                return;
+
+                            emscripten::val::global("createCodeMirror")(element->val(), emscripten::val{self->source()}, emscripten::val{true});
+                        })
+                    ),
+                    // what the source generates
+                    div{
+                        class_ = "card-content"
+                    }(
+                        render()
+                    )
+                )
+            )
+        );
+        // clang-format on
+    }
+    //---------------------------------------------------------------------------------------------------------------------
     std::string BasicCard::removeIndentation(std::string const& str)
     {
         std::string result;
@@ -43,4 +111,5 @@ namespace NuiPage
             result.pop_back();
         return result;
     }
+    // #####################################################################################################################
 }

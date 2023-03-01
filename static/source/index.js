@@ -8,6 +8,7 @@ import {
 import { EditorState, Compartment } from '@codemirror/state';
 import { cpp } from '@codemirror/lang-cpp';
 import { EditorView, basicSetup } from 'codemirror';
+import { dark } from './codemirror_theme';
 
 (() => {
     globalThis.createCodeMirror = (parent, initialText, readonly) => {
@@ -28,6 +29,7 @@ import { EditorView, basicSetup } from 'codemirror';
             extensions: [
                 basicSetup,
                 cpp(),
+                dark,
                 //lang.of(EditorState.languageData.of(cpp())),
                 tabSize.of(EditorState.tabSize.of(4)),
                 readOnly.of(EditorState.readOnly.of(readonly))

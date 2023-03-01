@@ -5,6 +5,7 @@ target_sources(${PROJECT_NAME}
         main_content.cpp
         navigation_bar.cpp
         simple_reactive_card.cpp
+        function_component_card.cpp
         basic_card.cpp
 )
 

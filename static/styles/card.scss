@@ -71,9 +71,6 @@
 .card-content {
     flex: 50%;
     align-items: baseline;
-}
-
-#simpleReactiveCardContent {
     display: flex;
     flex-direction: row;
     gap: $gap;

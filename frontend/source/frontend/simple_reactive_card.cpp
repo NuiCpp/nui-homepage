@@ -19,7 +19,40 @@ namespace NuiPage
     //---------------------------------------------------------------------------------------------------------------------
     SimpleReactiveCard& SimpleReactiveCard::operator=(SimpleReactiveCard&&) = default;
     //---------------------------------------------------------------------------------------------------------------------
-    Nui::ElementRenderer SimpleReactiveCard::operator()()
+    std::string SimpleReactiveCard::source() const
+    {
+        return removeIndentation(R"(
+            thread_local Observed<int> counter = 0;
+
+            div{}(
+                button{
+                    onClick = []{ ++counter; }
+                }("Increment"),
+                button{
+                    onClick = []{ counter = 0; }
+                }("Clear"),
+                div{}(
+                    span{}("Counter: "), 
+                    span{}(counter)
+                )
+            )
+        )");
+    }
+    //---------------------------------------------------------------------------------------------------------------------
+    std::string SimpleReactiveCard::header() const
+    {
+        return "View Updates Reactively";
+    }
+    //---------------------------------------------------------------------------------------------------------------------
+    std::string SimpleReactiveCard::description() const
+    {
+        return "The Nui library allows you to create reactive views."
+               "This means that when the data changes, the view will automatically update."
+               "This is done by using the Observed class."
+               "The Observed class is a wrapper around a value that allows you to observe changes to the value.";
+    }
+    //---------------------------------------------------------------------------------------------------------------------
+    Nui::ElementRenderer SimpleReactiveCard::render() const
     {
         using namespace Nui;
         using namespace Nui::Elements;
@@ -30,87 +63,21 @@ namespace NuiPage
         std::shared_ptr<Observed<int>> counter = std::make_shared<Observed<int>>(0);
 
         // clang-format off
-        return div{
-            class_ = "card"
-        }(
-            Nui::Dom::reference([](auto&& weakElementPtr){                
-                auto element = weakElementPtr.lock();
-                if (!element)
-                    return;
-
-                emscripten::val::global("setupCardFlyin")(element->val());
-            }),
-            div{}
-            (
-                div{
-                    class_ = "card-header"
-                }(
-                    h2{
-                        class_ = "card-title"
-                    }("View Updates Reactively"),
-                    p{
-                        class_ = "card-subtitle"
-                    }(
-                        "The Nui library allows you to create reactive views."
-                        "This means that when the data changes, the view will automatically update."
-                        "This is done by using the Observed class."
-                        "The Observed class is a wrapper around a value that allows you to observe changes to the value."
-                    )
-                ),
-                div{
-                    class_ = "card-body"
-                }(
-                    div{
-                        class_ = "card-source"
-                    }(
-                        Nui::Dom::reference([](auto&& weakElementPtr){
-                            auto element = weakElementPtr.lock();
-                            if (!element)
-                                return;
-
-                            auto source = removeIndentation(R"(
-                                thread_local Observed<int> counter = 0;
-
-                                div{}(
-                                    button{
-                                        onClick = []{ ++counter; }
-                                    }("Increment"),
-                                    button{
-                                        onClick = []{ counter = 0; }
-                                    }("Clear"),
-                                    div{}(
-                                        span{}("Counter: "), 
-                                        span{}(counter)
-                                    )
-                                )
-                            )");
-
-                            emscripten::val::global("createCodeMirror")(element->val(), emscripten::val{source}, emscripten::val{true});
-                        })
-                    ),
-                    // what the source generates
-                    div{
-                        class_ = "card-content",
-                        id = "simpleReactiveCardContent"
-                    }(
-                        button{
-                            onClick = [counter]{ ++*counter; },
-                            class_ = "btn btn-primary"
-                        }("Increment"),
-                        button{
-                            onClick = [counter]{ *counter = 0; },
-                            class_ = "btn btn-primary"
-                        }("Clear"),
-                        div{}(
-                            span{}("Counter: "), 
-                            span{}(*counter)
-                        )
-                    )
-                )
+        return fragment(
+            button{
+                onClick = [counter]{ ++*counter; },
+                class_ = "btn btn-primary"
+            }("Increment"),
+            button{
+                onClick = [counter]{ *counter = 0; },
+                class_ = "btn btn-primary"
+            }("Clear"),
+            div{}(
+                span{}("Counter: "), 
+                span{}(*counter)
             )
         );
         // clang-format on
     }
-    //---------------------------------------------------------------------------------------------------------------------
     // #####################################################################################################################
 }

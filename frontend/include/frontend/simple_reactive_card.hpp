@@ -18,10 +18,13 @@ namespace NuiPage
         SimpleReactiveCard(SimpleReactiveCard&&);
         SimpleReactiveCard& operator=(SimpleReactiveCard&&);
 
-        Nui::ElementRenderer operator()();
-
       private:
         struct Implementation;
         std::unique_ptr<Implementation> impl_;
+
+        std::string source() const override;
+        std::string header() const override;
+        std::string description() const override;
+        Nui::ElementRenderer render() const override;
     };
 }

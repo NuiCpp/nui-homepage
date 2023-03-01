@@ -1,5 +1,6 @@
 #include <frontend/main_content.hpp>
 
+#include <frontend/function_component_card.hpp>
 #include <frontend/simple_reactive_card.hpp>
 
 #include <nui/frontend/attributes.hpp>
@@ -10,9 +11,8 @@ namespace NuiPage
     // #####################################################################################################################
     struct MainContent::Implementation
     {
-        SimpleReactiveCard card1;
-        SimpleReactiveCard card2;
-        SimpleReactiveCard card3;
+        std::shared_ptr<SimpleReactiveCard> card1 = std::make_shared<SimpleReactiveCard>();
+        std::shared_ptr<FunctionComponentCard> card2 = std::make_shared<FunctionComponentCard>();
     };
     // #####################################################################################################################
     MainContent::MainContent()
@@ -49,8 +49,8 @@ namespace NuiPage
                 }("Get Started")
             ),
             div{id = "cardArea"}(
-                impl_->card1(),
-                impl_->card2()
+                (*impl_->card1)(),
+                (*impl_->card2)()
             )
         );
         // clang-format on

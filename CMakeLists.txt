@@ -17,7 +17,7 @@ if (EMSCRIPTEN)
     set_common_options(nui-homepage)
 
 	# Link frontend of nui inside of emscripten
-	target_link_libraries(nui-homepage PRIVATE nui-frontend)
+	target_link_libraries(nui-homepage PRIVATE nui-frontend fmt)
   
 	nui_prepare_emscripten_target(
 		TARGET
