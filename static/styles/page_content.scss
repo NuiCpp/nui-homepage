@@ -39,6 +39,15 @@
     color: $secondary;
 }
 
+#mainText {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1em;
+}
+
 /* Animate Background Image */
 @keyframes TitleAnimation {
     0% {

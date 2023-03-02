@@ -1,4 +1,4 @@
-#include <frontend/simple_reactive_card.hpp>
+#include <frontend/cards/simple_reactive_card.hpp>
 
 #include <nui/frontend/attributes.hpp>
 #include <nui/frontend/elements.hpp>
@@ -46,10 +46,10 @@ namespace NuiPage
     //---------------------------------------------------------------------------------------------------------------------
     std::string SimpleReactiveCard::description() const
     {
-        return "The Nui library allows you to create reactive views."
-               "This means that when the data changes, the view will automatically update."
-               "This is done by using the Observed class."
-               "The Observed class is a wrapper around a value that allows you to observe changes to the value.";
+        return "The Nui library allows you to create reactive views. "
+               "This means that when the data changes, the view will automatically update. "
+               "This is done by using the Observed class. "
+               "The Observed class is a wrapper around a value that allows you to observe changes to the value. ";
     }
     //---------------------------------------------------------------------------------------------------------------------
     Nui::ElementRenderer SimpleReactiveCard::render() const

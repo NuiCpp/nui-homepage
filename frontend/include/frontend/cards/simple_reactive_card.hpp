@@ -1,6 +1,6 @@
 #pragma once
 
-#include <frontend/basic_card.hpp>
+#include <frontend/cards/basic_card.hpp>
 
 #include <nui/frontend/generator_typedefs.hpp>
 

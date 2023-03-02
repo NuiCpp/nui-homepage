@@ -1,4 +1,4 @@
-#include <frontend/function_component_card.hpp>
+#include <frontend/cards/function_component_card.hpp>
 
 #include <nui/frontend/attributes.hpp>
 #include <nui/frontend/elements.hpp>

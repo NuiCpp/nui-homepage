@@ -1,7 +1,10 @@
 #include <frontend/main_content.hpp>
 
-#include <frontend/function_component_card.hpp>
-#include <frontend/simple_reactive_card.hpp>
+#include <frontend/cards/attribute_card.hpp>
+#include <frontend/cards/conditional_rendering_card.hpp>
+#include <frontend/cards/function_component_card.hpp>
+#include <frontend/cards/list_card.hpp>
+#include <frontend/cards/simple_reactive_card.hpp>
 
 #include <nui/frontend/attributes.hpp>
 #include <nui/frontend/elements.hpp>
@@ -13,6 +16,9 @@ namespace NuiPage
     {
         std::shared_ptr<SimpleReactiveCard> card1 = std::make_shared<SimpleReactiveCard>();
         std::shared_ptr<FunctionComponentCard> card2 = std::make_shared<FunctionComponentCard>();
+        std::shared_ptr<ConditionalRenderingCard> card3 = std::make_shared<ConditionalRenderingCard>();
+        std::shared_ptr<AttributeCard> card4 = std::make_shared<AttributeCard>();
+        std::shared_ptr<ListCard> card5 = std::make_shared<ListCard>();
     };
     // #####################################################################################################################
     MainContent::MainContent()
@@ -48,9 +54,16 @@ namespace NuiPage
                     class_ = "btn btn-primary"
                 }("Get Started")
             ),
+            div{id = "mainText"}(
+                "This page is written in C++ and CSS and rendered using the Nui library. "
+                "Assisted by Bootstrap and CodeMirror. "
+            ),
             div{id = "cardArea"}(
                 (*impl_->card1)(),
-                (*impl_->card2)()
+                (*impl_->card2)(),
+                (*impl_->card3)(),
+                (*impl_->card4)(),
+                (*impl_->card5)()
             )
         );
         // clang-format on
