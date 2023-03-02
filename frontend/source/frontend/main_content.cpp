@@ -45,7 +45,7 @@ namespace NuiPage
                     "Nui WebView Library"
                 ),
                 div{id = "pageSubtitle"}(
-                    "A C++ library for creating web-based user interfaces"
+                    "A C++ library for creating web-based user interfaces for Linux and Windows"
                 )
             ),
             div{id = "subTitleControls"}(
@@ -57,6 +57,17 @@ namespace NuiPage
             div{id = "mainText"}(
                 "This page is written in C++ and CSS and rendered using the Nui library. "
                 "Assisted by Bootstrap and CodeMirror. "
+            ),
+            div{id = "uiExampleWrap"}(
+                figure{id = "uiExample"}(
+                    img{
+                        src = "./assets/example.png",
+                        alt = "Example Image",
+                        width = "400px",
+                        height = "300px"
+                    }(),
+                    figcaption{}("An example of a user interface created with Nui")
+                )
             ),
             div{id = "cardArea"}(
                 (*impl_->card1)(),
