@@ -53,6 +53,5 @@ else()
          SOURCE_DIR
              ${CMAKE_SOURCE_DIR}
          CMAKE_OPTIONS
-         MAKE_OPTIONS
      )
 endif()

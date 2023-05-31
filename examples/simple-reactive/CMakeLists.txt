@@ -46,7 +46,6 @@ else()
          SOURCE_DIR
              ${CMAKE_SOURCE_DIR}
          CMAKE_OPTIONS
-         MAKE_OPTIONS
      )
 
      target_sources(simple-reactive PRIVATE main.cpp)

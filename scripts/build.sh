@@ -34,12 +34,12 @@ cd ${BUILD_DIR}
 export CXX=$COMPILER
 export CC=$CCOMPILER
 
-CMAKE_GENERATOR="Unix Makefiles"
+CMAKE_GENERATOR="Ninja"
 CMAKE_CXX_FLAGS=""
 if [[ ! -z "${MSYSTEM}" ]]; then
   # Emscripten doesn't work with more than 1 thread on windows
   THREADS=1
-  CMAKE_GENERATOR="MSYS Makefiles"
+  CMAKE_GENERATOR="Ninja"
   if [[ $CCOMPILER == clang ]]; then
     CMAKE_CXX_FLAGS="-fuse-ld=lld"
   fi
@@ -65,4 +65,4 @@ cmake \
 cd ../..
 # node ./scripts/copy_compile_commands.js
 cd ${BUILD_DIR}
-make -j$THREADS
+cmake --build .

@@ -1,5 +1,6 @@
 #include <frontend/page_frame.hpp>
 
+#include <frontend/about.hpp>
 #include <frontend/main_content.hpp>
 #include <frontend/navigation_bar.hpp>
 
@@ -19,6 +20,7 @@ namespace NuiPage
     {
         NavigationBar navBar;
         MainContent mainContent;
+        AboutPage aboutPage;
 
         Nui::Observed<std::string> fragment;
     };
@@ -51,14 +53,10 @@ namespace NuiPage
             }(
                 switch_(impl_->fragment)(
                     Elements::default_()(div{}(
-                        "Hi"
+                        "Unexpected Fragment"
                     )),
-                    case_("")(div{}(
-                        impl_->mainContent()
-                    )),
-                    case_("about")(div{}(
-                        "About" 
-                    ))
+                    case_("")(impl_->mainContent()),
+                    case_("about")(impl_->aboutPage())
                 )
             ),
             a{

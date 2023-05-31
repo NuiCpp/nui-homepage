@@ -14,11 +14,12 @@ namespace NuiPage
     // #####################################################################################################################
     struct MainContent::Implementation
     {
-        std::shared_ptr<SimpleReactiveCard> card1 = std::make_shared<SimpleReactiveCard>();
-        std::shared_ptr<FunctionComponentCard> card2 = std::make_shared<FunctionComponentCard>();
-        std::shared_ptr<ConditionalRenderingCard> card3 = std::make_shared<ConditionalRenderingCard>();
-        std::shared_ptr<AttributeCard> card4 = std::make_shared<AttributeCard>();
-        std::shared_ptr<ListCard> card5 = std::make_shared<ListCard>();
+        std::shared_ptr<SimpleReactiveCard> reactiveCard = std::make_shared<SimpleReactiveCard>();
+        std::shared_ptr<FunctionComponentCard> componentsCard = std::make_shared<FunctionComponentCard>();
+        std::shared_ptr<ConditionalRenderingCard> conditionalRenderingCard =
+            std::make_shared<ConditionalRenderingCard>();
+        std::shared_ptr<AttributeCard> attributesCard = std::make_shared<AttributeCard>();
+        std::shared_ptr<ListCard> listsCard = std::make_shared<ListCard>();
     };
     // #####################################################################################################################
     MainContent::MainContent()
@@ -49,9 +50,10 @@ namespace NuiPage
                 )
             ),
             div{id = "subTitleControls"}(
-                button{
+                a{
                     id = "getStartedButton",
-                    class_ = "btn btn-primary"
+                    class_ = "btn btn-primary",
+                    href = "https://nuicpp.github.io/nui-documentation/docs/getting_started/installation"
                 }("Get Started")
             ),
             div{id = "mainText"}(
@@ -61,6 +63,7 @@ namespace NuiPage
             div{id = "uiExampleWrap"}(
                 figure{id = "uiExample"}(
                     img{
+                        id = "uiExampleImage",
                         src = "./assets/example.png",
                         alt = "Example Image",
                         width = "400px",
@@ -70,11 +73,11 @@ namespace NuiPage
                 )
             ),
             div{id = "cardArea"}(
-                (*impl_->card1)(),
-                (*impl_->card2)(),
-                (*impl_->card3)(),
-                (*impl_->card4)(),
-                (*impl_->card5)()
+                (*impl_->reactiveCard)(),
+                (*impl_->componentsCard)(),
+                (*impl_->conditionalRenderingCard)(),
+                (*impl_->attributesCard)(),
+                (*impl_->listsCard)()
             )
         );
         // clang-format on

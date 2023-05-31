@@ -63,20 +63,21 @@ namespace NuiPage
         std::shared_ptr<Observed<int>> counter = std::make_shared<Observed<int>>(0);
 
         // clang-format off
-        return fragment(
-            button{
-                onClick = [counter]{ ++*counter; },
-                class_ = "btn btn-primary"
-            }("Increment"),
-            button{
-                onClick = [counter]{ *counter = 0; },
-                class_ = "btn btn-primary"
-            }("Clear"),
-            div{}(
-                span{}("Counter: "), 
-                span{}(*counter)
-            )
-        );
+        return div{}();
+        // return fragment(
+        //     button{
+        //         onClick = [counter]{ ++*counter; },
+        //         class_ = "btn btn-primary"
+        //     }("Increment"),
+        //     button{
+        //         onClick = [counter]{ *counter = 0; },
+        //         class_ = "btn btn-primary"
+        //     }("Clear"),
+        //     div{}(
+        //         span{}("Counter: "), 
+        //         span{}(*counter)
+        //     )
+        // );
         // clang-format on
     }
     // #####################################################################################################################

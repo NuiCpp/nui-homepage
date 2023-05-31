@@ -56,6 +56,17 @@
     margin-top: 1em;
 }
 
+#uiExampleImage {
+    transition: transform 0.5s;
+    display: block;
+    position: relative;
+    z-index: 5;
+}
+
+#uiExampleImage:hover {
+    transform: scale(2.5);
+}
+
 /* Animate Background Image */
 @keyframes TitleAnimation {
     0% {

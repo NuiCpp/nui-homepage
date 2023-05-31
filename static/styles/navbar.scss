@@ -18,6 +18,7 @@
 #navIconArea {
     display: flex;
     align-items: center;
+    min-height: 48px;
     height: 100%;
     padding: $gap;
     padding-right: calc(3 * $gap);

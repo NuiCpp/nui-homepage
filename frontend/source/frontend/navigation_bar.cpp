@@ -35,7 +35,7 @@ namespace NuiPage
             div{
                 id = "navIconArea"
             }(
-                img{id = "navMainIcon", src = ""}(),
+                //img{id = "navMainIcon", src = ""}(),
                 a{id = "navIconText", href = "#"}("Nui")
             ),
             div{
@@ -61,11 +61,11 @@ namespace NuiPage
                             a {
                                 class_ = "dropdown-item",
                                 // TODO: new domain
-                                href = "http://5cript.net:8085"
-                            }("Wiki.js"),
+                                href = "https://nuicpp.github.io/nui-documentation/"
+                            }("Documentation"),
                             a {
                                 class_ = "dropdown-item",
-                                href = "#"
+                                href = "https://nuicpp.github.io/nui-documentation/docs/doxygen/"
                             }("Doxygen")
                         )
                     )

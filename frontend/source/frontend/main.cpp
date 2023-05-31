@@ -5,7 +5,7 @@
 
 #include <nui/frontend/dom/dom.hpp>
 
-extern "C" void EMSCRIPTEN_KEEPALIVE frontendMain()
+extern "C" void frontendMain()
 {
     using namespace NuiPage;
 

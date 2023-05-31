@@ -1,5 +1,6 @@
 target_sources(${PROJECT_NAME} 
     PRIVATE 
+        about.cpp
         main.cpp 
         page_frame.cpp
         main_content.cpp

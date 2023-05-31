@@ -2,7 +2,7 @@
 
 #include <frontend/cards/basic_card.hpp>
 
-#include <nui/frontend/generator_typedefs.hpp>
+#include <nui/frontend/element_renderer.hpp>
 
 #include <memory>
 
