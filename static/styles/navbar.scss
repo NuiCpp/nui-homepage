@@ -1,38 +1,39 @@
 @import "./bootstrap.scss";
 
 #navBar {
-    display: flex;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-    background: linear-gradient(to bottom, $body-bg-dark1, $body-bg-dark2);
+  display: flex;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to bottom, $body-bg-dark1, $body-bg-dark2);
 }
 #navMainIcon {
-    /*Placeholder for now*/
-    width: 48px;
-    height: 48px;
-    background-color: blue;
+  /*Placeholder for now*/
+  width: 48px;
+  height: 48px;
+  background-color: blue;
 }
 #navIconText {
-    text-decoration: none;
-    color: $body-color;
+  margin-left: $gap;
+  text-decoration: none;
+  color: $body-color;
 }
 #navIconArea {
-    display: flex;
-    align-items: center;
-    min-height: 48px;
-    height: 100%;
-    padding: $gap;
-    padding-right: calc(3 * $gap);
-    gap: $gap;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  height: 100%;
+  padding: $gap;
+  padding-right: calc(3 * $gap);
+  gap: $gap;
 }
 #navLinks {
-    display: flex;
-    align-items: center;
-    gap: calc(3 * $gap);
-    padding: $gap;
-    padding-left: calc(3 * $gap);
+  display: flex;
+  align-items: center;
+  gap: calc(3 * $gap);
+  padding: $gap;
+  padding-left: calc(3 * $gap);
 }
 #navLinks > div > a,
 #navLinks > a {
-    text-decoration: none;
-    color: $body-color;
+  text-decoration: none;
+  color: $body-color;
 }

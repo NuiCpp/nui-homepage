@@ -1,91 +1,96 @@
 @import "./bootstrap.scss";
 
 #cardArea {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    gap: 2em;
-    padding: 2em;
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 2em;
+  padding: 2em;
+  width: 100%;
 }
 
 #cardArea .visible:nth-child(even) {
-    transform: translateX(2rem) !important; 
+  transform: translateX(2rem) !important;
 }
 #cardArea .visible:nth-child(odd) {
-    transform: translateX(-2rem) !important;
+  transform: translateX(-2rem) !important;
+}
+
+#cardArea .card {
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 #cardArea .card:nth-child(even) {
-    opacity: 0;
-    transform: translateX(-100%);
-    filter: blur(5px);
-    transition: all 1s;
-    transition-delay: 200ms;
+  opacity: 0;
+  transform: translateX(-100%);
+  filter: blur(5px);
+  transition: all 1s;
+  transition-delay: 200ms;
 }
 #cardArea .card:nth-child(odd) {
-    opacity: 0;
-    transform: translateX(100%);
-    filter: blur(5px);
-    transition: all 1s;
-    transition-delay: 200ms;
+  opacity: 0;
+  transform: translateX(100%);
+  filter: blur(5px);
+  transition: all 1s;
+  transition-delay: 200ms;
 }
 
 .card-body {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .card-header {
-    padding: $gap;
-    border-bottom: 1px solid $border-color;
+  padding: $gap;
+  border-bottom: 1px solid $border-color;
 }
 
 .card-subtitle {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .card-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-top: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0;
 }
 
 .card {
-    display: flex;
-    flex-direction: column;
-    width: 85%;
-    border: solid 1px $border-color;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);
-    overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  border: solid 1px $border-color;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
+  overflow: scroll;
 }
 
 .card-source {
-    flex: 50%;
-    max-width: 750px;
-    border-right: 1px solid $body-color;
+  flex: 50%;
+  max-width: 750px;
+  border-right: 1px solid $body-color;
 }
 
 .card-content {
-    flex: 50%;
-    align-items: baseline;
-    display: flex;
-    flex-direction: row;
-    gap: $gap;
-    padding: $gap;
+  flex: 50%;
+  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  gap: $gap;
+  padding: $gap;
 }
 
-@media(prefers-reduced-motion) {
-    .card {
-        transition: none;
-    }
+@media (prefers-reduced-motion) {
+  .card {
+    transition: none;
+  }
 }
 
 @media (max-width: 500px) {
-    .card-body {
-        flex-direction: row;
-    }
+  .card-body {
+    flex-direction: row;
+  }
 }

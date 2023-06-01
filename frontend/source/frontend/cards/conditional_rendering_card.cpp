@@ -2,10 +2,26 @@
 
 #include <nui/frontend/attributes.hpp>
 #include <nui/frontend/elements.hpp>
+#include <nui/frontend/elements/nil.hpp>
 
 namespace NuiPage
 {
     // #####################################################################################################################
+    struct ConditionalRenderingCard::Implementation
+    {
+        Nui::Observed<bool> contentSwitch{false};
+    };
+    // #####################################################################################################################
+    ConditionalRenderingCard::ConditionalRenderingCard()
+        : impl_{std::make_unique<Implementation>()}
+    {}
+    //---------------------------------------------------------------------------------------------------------------------
+    ConditionalRenderingCard::~ConditionalRenderingCard() = default;
+    //---------------------------------------------------------------------------------------------------------------------
+    ConditionalRenderingCard::ConditionalRenderingCard(ConditionalRenderingCard&&) = default;
+    //---------------------------------------------------------------------------------------------------------------------
+    ConditionalRenderingCard& ConditionalRenderingCard::operator=(ConditionalRenderingCard&&) = default;
+    //---------------------------------------------------------------------------------------------------------------------
     std::string ConditionalRenderingCard::source() const
     {
         return removeIndentation(R"(
@@ -52,18 +68,23 @@ namespace NuiPage
         using namespace Nui::Attributes;
         using Nui::Elements::div; // there is a global symbol named div
 
-        thread_local Observed<bool> contentSwitch{false};
-
         return div{}(
             // View updates depending on observed values here:
-            observe(contentSwitch),
-            []() -> Nui::ElementRenderer {
-                if (!*contentSwitch)
+            observe(impl_->contentSwitch),
+            [weak = weak_from_base<ConditionalRenderingCard>()]() -> Nui::ElementRenderer {
+                auto self = weak.lock();
+                if (!self)
+                    return nil();
+
+                const bool contentSwitch = *self->impl_->contentSwitch;
+
+                if (!contentSwitch)
                 {
                     return button{
                         onClick =
-                            []() {
-                                contentSwitch = !*contentSwitch;
+                            [weak = self->weak_from_base<ConditionalRenderingCard>()]() {
+                                if (auto self = weak.lock(); self)
+                                    self->impl_->contentSwitch = !*self->impl_->contentSwitch;
                             },
                         class_ = "btn btn-primary"}("Login");
                 }
@@ -71,8 +92,9 @@ namespace NuiPage
                 {
                     return button{
                         onClick =
-                            []() {
-                                contentSwitch = !*contentSwitch;
+                            [weak = self->weak_from_base<ConditionalRenderingCard>()]() {
+                                if (auto self = weak.lock(); self)
+                                    self->impl_->contentSwitch = !*self->impl_->contentSwitch;
                             },
                         class_ = "btn btn-primary"}("Logout");
                 }

@@ -1,3 +1,5 @@
+@import "./bootstrap.scss";
+
 #aboutPage {
   height: 100%;
   width: 100%;
@@ -5,14 +7,21 @@
 
 .about-column {
   float: left;
-  width: 33.3%;
   margin-bottom: 16px;
   padding: 0 8px;
 }
 
 .about-card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: $body-bg-dark1;
   margin: 8px;
+  padding: 8px;
+}
+
+.about-contributor-image {
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+  max-width: 300px;
 }
 
 .about-section {

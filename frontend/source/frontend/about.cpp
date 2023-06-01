@@ -42,7 +42,15 @@ namespace NuiPage
             div{class_ = "about-row"}(
                 div{class_ = "about-column"}(
                     div{class_ = "about-card"}(
-                        img{src = "https://avatars.githubusercontent.com/u/6238896?v=4", alt = "Tim", style = "width:100%;max-width:250px"}(),
+                        a{
+                            href = "https://github.com/5cript"
+                        }(
+                            img{
+                                class_ = "about-contributor-image",
+                                src = "https://avatars.githubusercontent.com/u/6238896?v=4", 
+                                alt = "Tim"
+                            }()
+                        ),
                         div{class_ = "container"}(
                             h2{}("Tim Ebbeke"),
                             p{class_ = "about-title"}("Lead Developer"),
@@ -52,9 +60,13 @@ namespace NuiPage
                     )
                 )
             ),
-            h2{style = "text-align:center"}("Special Thanks to All Further Contributors"),
-            a{href = "https://github.com/NuiCpp/Nui/graphs/contributors?from=2022-07-17&to=2023-05-31&type=a"}(
-                "See all contributors"
+            div{class_ = "about-section"}(
+                h2{style = "text-align:center"}("Special Thanks to All Further Contributors"),
+                p{}(
+                    a{href = "https://github.com/NuiCpp/Nui/graphs/contributors?from=2022-07-17&to=2023-05-31&type=a"}(
+                        "See all contributors"
+                    )
+                )
             )
         );
         // clang-format on

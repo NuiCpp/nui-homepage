@@ -60,11 +60,12 @@ namespace NuiPage
             }
 
             // Somewhere else:
+            Observed<std::string> textContent = "Hello World!";
             div{}(
                 prettyBox({
                     .width = 200, 
                     .height = 80, 
-                    .textContent = "Hello World!"
+                    .textContent = textContent
                 })
             )
         )");
