@@ -3,10 +3,10 @@
 #include <nui/frontend/attributes.hpp>
 #include <nui/frontend/elements.hpp>
 
-MAKE_HTML_VALUE_ATTRIBUTE_RENAME(dataBsToggle, "data-bs-toggle")
-
 namespace NuiPage
 {
+    constexpr auto dataBsToggle = Nui::Attributes::AttributeFactory("data-bs-toggle");
+
     // #####################################################################################################################
     struct NavigationBar::Implementation
     {};

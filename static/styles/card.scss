@@ -1,4 +1,5 @@
 @import "./bootstrap.scss";
+@import "./responsive.scss";
 
 #cardArea {
   display: flex;
@@ -10,13 +11,23 @@
   gap: 2em;
   padding: 2em;
   width: 100%;
+
+  @media screen and (max-width: $tablet) {
+    padding: 3px;
+    gap: 5px;
+    padding-top: 10px;
+  }
 }
 
-#cardArea .visible:nth-child(even) {
-  transform: translateX(2rem) !important;
-}
-#cardArea .visible:nth-child(odd) {
-  transform: translateX(-2rem) !important;
+@media not (prefers-reduced-motion) {
+  @media screen and (min-width: $tablet) {
+    #cardArea .visible:nth-child(even) {
+      transform: translateX(2rem) !important;
+    }
+    #cardArea .visible:nth-child(odd) {
+      transform: translateX(-2rem) !important;
+    }
+  }
 }
 
 #cardArea .card {
@@ -24,24 +35,32 @@
   overflow-y: auto;
 }
 
-#cardArea .card:nth-child(even) {
-  opacity: 0;
-  transform: translateX(-100%);
-  filter: blur(5px);
-  transition: all 1s;
-  transition-delay: 200ms;
-}
-#cardArea .card:nth-child(odd) {
-  opacity: 0;
-  transform: translateX(100%);
-  filter: blur(5px);
-  transition: all 1s;
-  transition-delay: 200ms;
+@media not (prefers-reduced-motion) {
+  @media screen and (min-width: $tablet) {
+    #cardArea .card:nth-child(even) {
+      opacity: 0;
+      transform: translateX(-100%);
+      filter: blur(5px);
+      transition: all 1s;
+      transition-delay: 200ms;
+    }
+    #cardArea .card:nth-child(odd) {
+      opacity: 0;
+      transform: translateX(100%);
+      filter: blur(5px);
+      transition: all 1s;
+      transition-delay: 200ms;
+    }
+  }
 }
 
 .card-body {
   display: flex;
   flex-direction: row;
+
+  @media screen and (max-width: $smallDesktop) {
+    flex-direction: column;
+  }
 }
 
 .card-header {
@@ -66,6 +85,10 @@
   border: solid 1px $border-color;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
   overflow: scroll;
+
+  @media screen and (max-width: $tablet) {
+    width: 100%;
+  }
 }
 
 .card-source {
@@ -83,14 +106,8 @@
   padding: $gap;
 }
 
-@media (prefers-reduced-motion) {
-  .card {
-    transition: none;
-  }
-}
-
-@media (max-width: 500px) {
-  .card-body {
-    flex-direction: row;
+@media screen and (max-width: $tablet) {
+  .cm-editor * {
+    font-size: 12px !important;
   }
 }

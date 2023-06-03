@@ -1,4 +1,5 @@
 @import "./bootstrap.scss";
+@import "./responsive.scss";
 
 #navBar {
   display: flex;
@@ -24,6 +25,12 @@
   padding: $gap;
   padding-right: calc(3 * $gap);
   gap: $gap;
+
+  @media screen and (max-width: $phone) {
+    padding: $gap;
+    padding-right: $gap;
+    min-height: 36px;
+  }
 }
 #navLinks {
   display: flex;
@@ -31,6 +38,10 @@
   gap: calc(3 * $gap);
   padding: $gap;
   padding-left: calc(3 * $gap);
+
+  @media screen and (max-width: $phone) {
+    gap: $gap;
+  }
 }
 #navLinks > div > a,
 #navLinks > a {
