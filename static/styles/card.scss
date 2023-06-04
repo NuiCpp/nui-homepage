@@ -11,6 +11,7 @@
   gap: 2em;
   padding: 2em;
   width: 100%;
+  overflow: hidden;
 
   @media screen and (max-width: $tablet) {
     padding: 3px;
@@ -24,6 +25,7 @@
     #cardArea .visible:nth-child(even) {
       transform: translateX(2rem) !important;
     }
+
     #cardArea .visible:nth-child(odd) {
       transform: translateX(-2rem) !important;
     }
@@ -44,6 +46,7 @@
       transition: all 1s;
       transition-delay: 200ms;
     }
+
     #cardArea .card:nth-child(odd) {
       opacity: 0;
       transform: translateX(100%);
@@ -94,7 +97,14 @@
 .card-source {
   flex: 50%;
   max-width: 750px;
-  border-right: 1px solid $body-color;
+
+  @media screen and (max-width: $tablet) {
+    border-bottom: 1px solid $body-color;
+  }
+
+  @media screen and (min-width: $tablet) {
+    border-right: 1px solid $body-color;
+  }
 }
 
 .card-content {

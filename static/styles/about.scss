@@ -1,47 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import "./bootstrap.scss";
+@import "./responsive.scss";
 
 #aboutPage {
-  height: 100%;
-  width: 100%;
-}
-
-.about-column {
-  float: left;
-  margin-bottom: 16px;
-  padding: 0 8px;
-}
-
-.about-card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  background-color: $body-bg-dark1;
-  margin: 8px;
-  padding: 8px;
-}
-
-.about-contributor-image {
-  border-radius: 5px 5px 0 0;
-  width: 100%;
-  max-width: 300px;
-}
-
-.about-section {
-  padding: 50px;
-  text-align: center;
-  background-color: #474e5d;
+  padding: 0;
+  padding-top: calc(3 * $gap);
+  margin: 0;
+  background-color: #17141d;
   color: white;
+  font-family: 'Montserrat', monospace;
 }
 
-.about-container {
-  padding: 0 16px;
+a {
+  text-decoration: none;
 }
 
-.about-container::after,
-.about-row::after {
-  content: "";
+.card_about-list {
+  display: flex;
+  padding: 3rem;
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #201c29;
+    border-radius: 10px;
+    box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, .25), inset -2px -2px 2px rgba(0, 0, 0, .25);
+  }
+}
+
+.card_about-list::-webkit-scrollbar-track {
+  background: linear-gradient(90deg, #201c29, #201c29 1px, #17141d 0, #17141d);
+}
+
+.card_about {
+  width: 400px;
+  min-width: 250px;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: #19161e;
+  box-shadow: -1rem 0 3rem #000;
+  display: flex;
+  flex-direction: column;
+  transition: .2s;
+  margin: 0;
+  scroll-snap-align: start;
   clear: both;
-  display: table;
+  position: relative;
+
+  @media not (prefers-reduced-motion) {
+    &:hover {
+      transform: translateY(-1rem);
+    }
+  }
+
+  &:hover {
+    h2 {
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      text-shadow: none;
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .author-avatar img {
+      filter: none;
+    }
+  }
 }
 
-.about-title {
-  color: grey;
+@media not (prefers-reduced-motion) {
+
+  .card_about:focus-within~.card_about,
+  .card_about:hover~.card_about {
+    transform: translateX(130px);
+  }
+}
+
+
+.card_about:not(:first-child) {
+  margin-left: -130px;
+}
+
+.card_about-header {
+  margin-bottom: auto;
+  text-align: center;
+
+  p {
+    font-size: 14px;
+    margin: 0 0 1rem;
+    color: #7a7a8c;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin: .25rem 0 auto;
+    text-decoration: none;
+    color: inherit;
+    border: 0;
+    display: inline-block;
+    cursor: pointer;
+  }
+}
+
+
+.card_about-author {
+  margin: 3rem 0 0;
+  display: grid;
+  grid-template-columns: 75px 1fr;
+  align-items: center;
+  position: relative;
+}
+
+.author-avatar {
+  grid-area: auto;
+  align-self: start;
+  position: relative;
+  box-sizing: border-box;
+
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    filter: grayscale(100%);
+    display: block;
+    overflow: hidden;
+    margin: 16px 10px;
+  }
+}
+
+.author-name {
+  grid-area: auto;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.author-name-prefix {
+  font-style: normal;
+  font-weight: 700;
+  color: #7a7a8c;
+}
+
+.half-circle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 48px;
+  pointer-events: none;
+}
+
+.tags {
+  @media screen and (max-width: $phone) {
+    flex-direction: column;
+  }
+
+  margin: 1rem 0 2rem;
+  gap: 5px;
+  padding: .5rem 0 1rem;
+  line-height: 2;
+  margin-bottom: 0;
+  display: flex;
+}
+
+.tags a {
+  font-style: normal;
+  font-weight: 700;
+  font-size: .5rem;
+  color: #7a7a8c;
+  text-transform: uppercase;
+  font-size: .66rem;
+  border: 3px solid #28242f;
+  border-radius: 2rem;
+  padding: .2rem .85rem .25rem;
+  position: relative;
+}
+
+.tags a:hover {
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  text-shadow: none;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-box-decoration-break: clone;
+  background-clip: text;
+  border-color: white;
 }
