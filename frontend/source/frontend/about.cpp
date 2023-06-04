@@ -33,41 +33,40 @@ namespace NuiPage
 
         // clang-format off
         return div{id = "aboutPage"}(
-            div{class_ = "about-section"}(
-                h1{}("About Nui"),
-                p{}("The Nui project is free and fully open source and available on GitHub."),
-                p{}("Contributions are welcome!")
-            ),
-            h2{style = "text-align:center"}("Core Contributors"),
-            div{class_ = "about-row"}(
-                div{class_ = "about-column"}(
-                    div{class_ = "about-card"}(
-                        a{
-                            href = "https://github.com/5cript"
-                        }(
-                            img{
-                                class_ = "about-contributor-image",
-                                src = "https://avatars.githubusercontent.com/u/6238896?v=4", 
-                                alt = "Tim"
-                            }()
-                        ),
-                        div{class_ = "container"}(
-                            h2{}("Tim Ebbeke"),
-                            p{class_ = "about-title"}("Lead Developer"),
-                            p{}("Nui Creator and Lead Developer"),
-                            p{}("tim06tr@gmail.com")
+                    div{}(
+                        h1{style = "text-align:center"}("About Nui"),
+                        p{style = "text-align:center"}("The Nui project is free and fully open source and available on GitHub."),
+                        p{style = "text-align:center"}("Contributions are welcome!")
+                    ),  
+                    section{class_ = "card_about-list"}(
+                        article{class_ = "card_about"}(
+                            header{class_ = "card_about-header"}(
+                                h2{}("Core Contributor")
+                            ),
+                            div{class_ = "card_about-author"}(
+                                a{class_ = "author-avatar", href="https://github.com/5cript"}(
+                                    img{src = "https://avatars.githubusercontent.com/u/6238896?v=4"}()
+                                ),
+                                img{class_ = "half-circle", src="./assets/halfcircle.svg"}(),
+                                div{class_ = "author-name"}(
+                                    div{class_ = "author-name-prefix"}("Nui Creator and Lead Developer"),
+                                    div{class_ = "author-name"}("Tim Ebbeke")
+                                )
+                            ),
+                            div{class_ = "tags"}(
+                                a{href = "https://github.com/5cript"}("github"),
+                                a{href = "mailto:tim06tr@gmail.com"}("tim06tr@gmail.com")
+                            )
+                        )
+                 ),
+                div{style = "text-align:center"}(
+                    h2{style = "text-align:center"}("Special Thanks to All Further Contributors"),
+                    p{}(
+                        a{ href = "https://github.com/NuiCpp/Nui/graphs/contributors?from=2022-07-17&to=2023-05-31&type=a"}(
+                            "See all contributors"
                         )
                     )
                 )
-            ),
-            div{class_ = "about-section"}(
-                h2{style = "text-align:center"}("Special Thanks to All Further Contributors"),
-                p{}(
-                    a{href = "https://github.com/NuiCpp/Nui/graphs/contributors?from=2022-07-17&to=2023-05-31&type=a"}(
-                        "See all contributors"
-                    )
-                )
-            )
         );
         // clang-format on
     }
