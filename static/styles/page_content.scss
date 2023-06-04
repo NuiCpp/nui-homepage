@@ -1,6 +1,5 @@
 @import "./bootstrap.scss";
 @import "./responsive.scss";
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 #pageContent {
   display: flex;
@@ -16,7 +15,7 @@
 }
 
 #pageTitle {
-  font: 700 3em/1 "Montserrat", monospace;
+  font: 700 3em/1 "Oswald", sans-serif;
   letter-spacing: 0;
   padding: 0.8em 0 0em;
   display: block;
@@ -31,7 +30,8 @@
   -webkit-animation: TitleAnimation 21s ease infinite;
   -moz-animation: TitleAnimation 21s ease infinite;
   animation: TitleAnimation 21s ease infinite;
-  filter: drop-shadow(2px 4px 3px rgba(0, 0, 0, 0.5)) drop-shadow(0px -1px 1px rgba(255, 255, 255, 0.5));
+  filter: drop-shadow(2px 4px 3px rgba(0, 0, 0, 0.5))
+    drop-shadow(0px -1px 1px rgba(255, 255, 255, 0.5));
 
   @media screen and (max-width: $tablet) {
     font-size: 2em;
@@ -39,7 +39,7 @@
 }
 
 #pageSubtitle {
-  font: 400 1.3em "Montserrat", monospace;
+  font: 400 1.3em "Oswald", sans-serif;
   padding-bottom: 0.8em;
   color: $secondary;
 
@@ -85,6 +85,7 @@
   @media screen and (min-width: $smallDesktop) {
     @media (prefers-reduced-motion) {
       width: 70%;
+      height: 400px;
     }
   }
 }
@@ -95,7 +96,6 @@
       transform: scale(1.8);
     }
   }
-
   @media screen and (min-width: $smallDesktop) {
     #uiExampleImage:hover {
       transform: scale(2.5);
@@ -108,11 +108,9 @@
   0% {
     background-position: 0% 50%;
   }
-
   50% {
     background-position: 100% 50%;
   }
-
   100% {
     background-position: 0% 50%;
   }

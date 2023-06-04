@@ -1,6 +1,9 @@
 $gap: 5px;
 $border-color: rgba(255, 255, 255, 0.5);
 
+$navbar-height: 48px;
+$navbar-height-sm: 36px;
+
 $primary: #1c72cf;
 $secondary: #6c757d;
 $success: #28a745;
@@ -13,21 +16,21 @@ $dark: #343a40;
 $body-bg: #17141d;
 $body-bg-dark1: mix($body-bg, black, 95%);
 $body-bg-dark2: mix($body-bg, black, 70%);
-$body-color: white;
+$body-color: #e0e0e0;
 $border-radius: 0px;
 $border-radius-sm: 0px;
 $border-radius-lg: 0px;
 $form-check-input-bg: #aaa;
 
 $theme-colors: (
-    "primary": $primary,
-    "secondary": $secondary,
-    "success": $success,
-    "info": $info,
-    "warning": $warning,
-    "danger": $danger,
-    "light": $light,
-    "dark": $dark,
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
 );
 
 // dropdown
