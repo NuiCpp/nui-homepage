@@ -1,18 +1,24 @@
-#AlignAfterOpenBracket: BlockIndent
-AlignAfterOpenBracket: AlwaysBreak
+BreakAfterOpenBracketBracedList: true
+BreakAfterOpenBracketFunction: true
+BreakAfterOpenBracketIf: true
+BreakAfterOpenBracketLoop: true
+BreakBeforeCloseBracketBracedList: true
+BreakBeforeCloseBracketFunction: true
+BreakBeforeCloseBracketIf: true
+BreakBeforeCloseBracketLoop: true
+AlignAfterOpenBracket: false
+
 AlignEscapedNewlines: DontAlign
-AlignOperands: true
 AlignTrailingComments: false
 AllowAllArgumentsOnNextLine: true
 AllowAllConstructorInitializersOnNextLine: false
-AllowAllParametersOfDeclarationOnNextLine: true
+AllowAllParametersOfDeclarationOnNextLine: false
 AllowShortBlocksOnASingleLine: Empty
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: None
 AllowShortIfStatementsOnASingleLine: Never
 AllowShortLambdasOnASingleLine: Empty
 AllowShortLoopsOnASingleLine: false
-AllowAllParametersOfDeclarationOnNextLine: false
 AlwaysBreakBeforeMultilineStrings: true
 AlwaysBreakTemplateDeclarations: Yes
 BasedOnStyle: LLVM
@@ -30,13 +36,14 @@ BraceWrapping:
   AfterNamespace: true
   AfterStruct: true
   AfterUnion: true
+  AfterExternBlock: true
+  BeforeLambdaBody: true
   BeforeCatch: true
   BeforeElse: true
   IndentBraces: false
   SplitEmptyFunction: false
   SplitEmptyNamespace: true
   SplitEmptyRecord: false
-AlignEscapedNewlines: DontAlign
 BreakConstructorInitializers: BeforeComma
 BreakInheritanceList: BeforeComma
 BreakStringLiterals: true
@@ -50,10 +57,10 @@ IndentCaseLabels: true
 IndentPPDirectives: AfterHash
 IndentWidth: 4
 Language: Cpp
-NamespaceIndentation: All 
+NamespaceIndentation: All
 PointerAlignment: Left
 ReflowComments: true
-SortIncludes: true
+SortIncludes: false
 SortUsingDeclarations: false
 SpaceAfterTemplateKeyword: true
 SpaceBeforeAssignmentOperators: true

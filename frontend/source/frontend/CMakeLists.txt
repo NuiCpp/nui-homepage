@@ -1,7 +1,7 @@
-target_sources(${PROJECT_NAME} 
-    PRIVATE 
+target_sources(${PROJECT_NAME}
+    PRIVATE
         about.cpp
-        main.cpp 
+        main.cpp
         page_frame.cpp
         main_content.cpp
         navigation_bar.cpp
@@ -13,4 +13,30 @@ target_sources(${PROJECT_NAME}
         cards/list_card.cpp
 )
 
+set_common_options(nui-homepage)
+
+# Link frontend of nui inside of emscripten
+target_link_libraries(nui-homepage PRIVATE nui-frontend fmt)
+
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/frontend/include)
+
+nui_prepare_emscripten_target(
+    TARGET
+        nui-homepage
+    PARCEL_ARGS
+        # --no-optimize
+        --dist-dir=${CMAKE_BINARY_DIR}/../bin
+    PREJS
+        ${PREJS_FILE}
+    UNPACKED_MODE
+        on
+    EMSCRIPTEN_LINK_OPTIONS
+        -sEXPORTED_FUNCTIONS=_frontendMain
+        -O2
+        -sALLOW_MEMORY_GROWTH=1
+        # -g -sNO_DISABLE_EXCEPTION_CATCHING
+        # or other options, see emscripten docs.
+    EMSCRIPTEN_COMPILE_OPTIONS
+        -O3
+        # -g
+)

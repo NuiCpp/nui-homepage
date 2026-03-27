@@ -2,6 +2,9 @@
 
 #include <nui/frontend/attributes.hpp>
 #include <nui/frontend/elements.hpp>
+#include <nui/frontend/api/keyboard_event.hpp>
+
+#include <fmt/format.h>
 
 namespace NuiPage
 {
@@ -9,8 +12,10 @@ namespace NuiPage
     std::string AttributeCard::source() const
     {
         return removeIndentation(R"(
-            thread_local Observed<std::string> inputText = "Type Here!";
+            // Header:
+            Nui::Observed<std::string> inputText;
 
+            // Source:
             return div{}(
                 label{
                     for_ = "attributeInput",
@@ -34,7 +39,7 @@ namespace NuiPage
                 }(
                     // Text content or attributes can use this expression to generate
                     //  more complex values from observed values:
-                    observe(inputText).generate([](){
+                    observe(inputText).generate([this](){
                         return "Characters: " + std::to_string(inputText.size());
                     })
                 )
@@ -53,7 +58,7 @@ namespace NuiPage
                "Any attribute can be observed and will be updated when the value changes. ";
     }
     //---------------------------------------------------------------------------------------------------------------------
-    Nui::ElementRenderer AttributeCard::render() const
+    Nui::ElementRenderer AttributeCard::render()
     {
         using namespace Nui;
         using namespace Nui::Elements;
@@ -63,14 +68,12 @@ namespace NuiPage
         using Nui::Elements::label;
         using Nui::Attributes::title;
 
-        thread_local Observed<std::string> inputText = "Type Here!";
-
         // clang-format off
         return div{
-            style = Style{
-                "display"_style = "flex",
-                "flex-direction"_style = "column"
-            }
+            style = fmt::format(
+                "display: {}; flex-direction: {}",
+                "flex", "column"
+            )
         }(
             label{
                 for_ = "attributeInput",
@@ -83,9 +86,9 @@ namespace NuiPage
                 id = "attributeInput",
                 class_ = "form-control",
                 type = "text",
-                value = inputText,
-                onInput = [](auto const& event) {
-                    inputText = event["target"]["value"].template as<std::string>();
+                "value"_prop = inputText,
+                onInput = [this](Nui::WebApi::KeyboardEvent event) {
+                    inputText = event.target()["value"].template as<std::string>();
                 }
             }(),
             span{
@@ -94,7 +97,7 @@ namespace NuiPage
             }(
                 // Text content or attributes can use this expression to generate more complex
                 // values from observed values:
-                observe(inputText).generate([](){
+                observe(inputText).generate([this](){
                     return "Characters: " + std::to_string(inputText.size());
                 })
             )

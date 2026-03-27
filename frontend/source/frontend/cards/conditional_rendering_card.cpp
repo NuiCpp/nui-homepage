@@ -61,7 +61,7 @@ namespace NuiPage
                "nui. ";
     }
     //---------------------------------------------------------------------------------------------------------------------
-    Nui::ElementRenderer ConditionalRenderingCard::render() const
+    Nui::ElementRenderer ConditionalRenderingCard::render()
     {
         using namespace Nui;
         using namespace Nui::Elements;
@@ -71,7 +71,8 @@ namespace NuiPage
         return div{}(
             // View updates depending on observed values here:
             observe(impl_->contentSwitch),
-            [weak = weak_from_base<ConditionalRenderingCard>()]() -> Nui::ElementRenderer {
+            [weak = weak_from_base<ConditionalRenderingCard>()]() -> Nui::ElementRenderer
+            {
                 auto self = weak.lock();
                 if (!self)
                     return nil();
@@ -82,23 +83,28 @@ namespace NuiPage
                 {
                     return button{
                         onClick =
-                            [weak = self->weak_from_base<ConditionalRenderingCard>()]() {
-                                if (auto self = weak.lock(); self)
-                                    self->impl_->contentSwitch = !*self->impl_->contentSwitch;
-                            },
-                        class_ = "btn btn-primary"}("Login");
+                            [weak = self->weak_from_base<ConditionalRenderingCard>()]()
+                        {
+                            if (auto self = weak.lock(); self)
+                                self->impl_->contentSwitch = !*self->impl_->contentSwitch;
+                        },
+                        class_ = "btn btn-primary"
+                    }("Login");
                 }
                 else
                 {
                     return button{
                         onClick =
-                            [weak = self->weak_from_base<ConditionalRenderingCard>()]() {
-                                if (auto self = weak.lock(); self)
-                                    self->impl_->contentSwitch = !*self->impl_->contentSwitch;
-                            },
-                        class_ = "btn btn-primary"}("Logout");
+                            [weak = self->weak_from_base<ConditionalRenderingCard>()]()
+                        {
+                            if (auto self = weak.lock(); self)
+                                self->impl_->contentSwitch = !*self->impl_->contentSwitch;
+                        },
+                        class_ = "btn btn-primary"
+                    }("Logout");
                 }
-            });
+            }
+        );
     }
     // #####################################################################################################################
 }

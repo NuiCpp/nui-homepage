@@ -5,11 +5,12 @@
 
 #include <algorithm>
 #include <deque>
+#include <sstream>
 
 namespace NuiPage
 {
     // #####################################################################################################################
-    Nui::ElementRenderer BasicCard::operator()() const
+    Nui::ElementRenderer BasicCard::operator()()
     {
         using namespace Nui;
         using namespace Nui::Elements;
@@ -20,7 +21,7 @@ namespace NuiPage
         // clang-format off
         return div{
             class_ = "card",
-            reference = [](auto&& weakElementPtr){                
+            reference = [](auto&& weakElementPtr){
                 auto element = weakElementPtr.lock();
                 if (!element)
                     return;
@@ -88,10 +89,19 @@ namespace NuiPage
         if (lines.empty())
             return "No Source Code Found!";
 
-        auto trimLeft = [](std::string& s) {
-            s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch) {
+        auto trimLeft = [](std::string& s)
+        {
+            s.erase(
+                s.begin(),
+                std::find_if(
+                    s.begin(),
+                    s.end(),
+                    [](int ch)
+                    {
                         return !std::isspace(ch);
-                    }));
+                    }
+                )
+            );
         };
 
         // Remove all empty lines at the beginning:
