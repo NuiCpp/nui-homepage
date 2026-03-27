@@ -61,15 +61,25 @@ namespace NuiPage
                 "Assisted by Bootstrap and CodeMirror. "
             ),
             div{id = "uiExampleWrap"}(
-                figure{id = "uiExample"}(
+                figure{class_ = "ui-example"}(
                     img{
-                        id = "uiExampleImage",
+                        class_ = "ui-example-image",
                         src = "./assets/example.png",
                         alt = "Example Image",
                         width = "400px",
                         height = "300px"
                     }(),
                     figcaption{}("An example of a user interface created with Nui")
+                ),
+                figure{class_ = "ui-example"}(
+                    img{
+                        class_ = "ui-example-image",
+                        src = "https://camo.githubusercontent.com/11e7081a9be872e63e5fff1b244a8b1d18118c82c6a8a64cc38b03f3dc770895/68747470733a2f2f73332e672e73342e6d6567612e696f2f6a67656d6b69623461356674653335726b747435777872776b7734656a6b347962656d6b662f6e75692d7363702f696d616765732f6e75692d736674702d73657373696f6e2e706e67",
+                        alt = "Example Image 2",
+                        width = "500px",
+                        height = "300px"
+                    }(),
+                    figcaption{}("nui-sftp created using Nui")
                 )
             ),
             div{id = "cardArea"}(

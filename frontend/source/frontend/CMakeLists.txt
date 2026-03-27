@@ -39,4 +39,12 @@ nui_prepare_emscripten_target(
     EMSCRIPTEN_COMPILE_OPTIONS
         -O3
         # -g
+    OBSERVED_BUNDLE_FILES
+        "${CMAKE_SOURCE_DIR}/static/styles/page_content.scss"
+        "${CMAKE_SOURCE_DIR}/static/styles/responsive.scss"
+        "${CMAKE_SOURCE_DIR}/static/styles/navbar.scss"
+        "${CMAKE_SOURCE_DIR}/static/styles/main.scss"
+        "${CMAKE_SOURCE_DIR}/static/styles/card.scss"
+        "${CMAKE_SOURCE_DIR}/static/styles/bootstrap.scss"
+        "${CMAKE_SOURCE_DIR}/static/styles/about.scss"
 )

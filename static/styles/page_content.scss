@@ -58,28 +58,33 @@
 }
 
 #uiExampleWrap {
-  display: flex;
+  display: grid;
   align-items: center;
   justify-content: center;
   width: 100%;
   margin-top: 1em;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
-#uiExample {
+.ui-example {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-#uiExampleImage {
+.ui-example-image {
   transition: transform 0.5s;
-  display: block;
   position: relative;
   z-index: 5;
 
+  &:hover {
+    z-index: 10;
+  }
+
   @media screen and (max-width: $tablet) {
-    width: 100%;
+    //width: 100%;
   }
 
   @media screen and (min-width: $smallDesktop) {
@@ -92,13 +97,29 @@
 
 @media not (prefers-reduced-motion) {
   @media screen and (min-width: $tablet) {
-    #uiExampleImage:hover {
-      transform: scale(1.8);
+    #uiExampleWrap {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+    }
+
+    // Left image: shift right so it doesn't overflow the left edge
+    .ui-example:nth-child(1) .ui-example-image:hover {
+      transform: scale(1.8) translateX(25%);
+    }
+
+    // Right image: shift left so it doesn't overflow the right edge
+    .ui-example:nth-child(2) .ui-example-image:hover {
+      transform: scale(1.8) translateX(-25%);
     }
   }
+
   @media screen and (min-width: $smallDesktop) {
-    #uiExampleImage:hover {
-      transform: scale(2.5);
+    .ui-example:nth-child(1) .ui-example-image:hover {
+      transform: scale(2.5) translateX(25%);
+    }
+
+    .ui-example:nth-child(2) .ui-example-image:hover {
+      transform: scale(2.5) translateX(-25%);
     }
   }
 }
