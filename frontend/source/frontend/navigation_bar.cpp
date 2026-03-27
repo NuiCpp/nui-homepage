@@ -60,7 +60,6 @@ namespace NuiPage
                             }("Github Readme"),
                             a {
                                 class_ = "dropdown-item",
-                                // TODO: new domain
                                 href = "https://nuicpp.github.io/nui-documentation/"
                             }("Documentation"),
                             a {
@@ -74,7 +73,11 @@ namespace NuiPage
                     href = "#about"
                 }(
                     "About"
-                )
+                ),
+                a {
+                    class_ = "dropdown-item",
+                    href = "#examples"
+                }("More Examples")
             )
         );
         // clang-format on

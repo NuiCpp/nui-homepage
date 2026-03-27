@@ -5,6 +5,7 @@ target_sources(${PROJECT_NAME}
         page_frame.cpp
         main_content.cpp
         navigation_bar.cpp
+        example_page.cpp
         cards/attribute_card.cpp
         cards/simple_reactive_card.cpp
         cards/function_component_card.cpp
@@ -16,7 +17,7 @@ target_sources(${PROJECT_NAME}
 set_common_options(nui-homepage)
 
 # Link frontend of nui inside of emscripten
-target_link_libraries(nui-homepage PRIVATE nui-frontend fmt)
+target_link_libraries(nui-homepage PRIVATE nui-frontend fmt script-nui-components)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/frontend/include)
 
@@ -47,4 +48,7 @@ nui_prepare_emscripten_target(
         "${CMAKE_SOURCE_DIR}/static/styles/card.scss"
         "${CMAKE_SOURCE_DIR}/static/styles/bootstrap.scss"
         "${CMAKE_SOURCE_DIR}/static/styles/about.scss"
+        "${CMAKE_SOURCE_DIR}/static/styles/example_page.scss"
+        "${CMAKE_SOURCE_DIR}/dependencies/5cript-nui-components/styles/carousel.css"
+        "${CMAKE_SOURCE_DIR}/dependencies/5cript-nui-components/styles/select.css"
 )

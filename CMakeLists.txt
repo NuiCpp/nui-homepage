@@ -15,6 +15,7 @@ set(PREJS_FILE ${CMAKE_SOURCE_DIR}/frontend/source/frontend/js/module.js)
 if (EMSCRIPTEN)
     add_executable(nui-homepage)
 
+    add_subdirectory(${CMAKE_SOURCE_DIR}/dependencies/5cript-nui-components)
     add_subdirectory(${CMAKE_SOURCE_DIR}/frontend/source/frontend)
 else()
     add_library(nui-homepage INTERFACE)
