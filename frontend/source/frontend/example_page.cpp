@@ -1,4 +1,7 @@
 #include <frontend/example_page.hpp>
+#include <frontend/examples/basic_example.hpp>
+#include <frontend/examples/button_counter.hpp>
+#include <frontend/examples/text_counter.hpp>
 
 #include <script-nui-components/select.hpp>
 #include <script-nui-components/carousel.hpp>
@@ -19,39 +22,39 @@ namespace NuiPage
     {
         std::shared_ptr<Nui::Observed<int>> page;
         std::unique_ptr<Carousel> carousel;
+        std::vector<std::unique_ptr<BasicExample>> examples;
     };
     // #####################################################################################################################
     ExamplePage::ExamplePage()
         : impl_{std::make_unique<Implementation>(Implementation{
               .page = std::make_shared<Nui::Observed<int>>(0),
-              .carousel{},
           })}
     {
+        impl_->examples.push_back(std::make_unique<ButtonCounter>());
+        impl_->examples.push_back(std::make_unique<TextCounter>());
+
         impl_->carousel = std::make_unique<Carousel>(Carousel{
             impl_->page,
             [this](int page)
             {
                 return renderPage(page);
             },
-            20,
-            5
+            static_cast<int>(impl_->examples.size()),
+            std::min(5, static_cast<int>(impl_->examples.size())),
+            CarouselControlsPosition::Bottom
         });
     }
     //---------------------------------------------------------------------------------------------------------------------
     Nui::ElementRenderer ExamplePage::renderPage(int page)
     {
-        using namespace Nui;
         using namespace Nui::Elements;
         using namespace Nui::Attributes;
-        using Nui::Elements::div; // because of the global div.
+        using Nui::Elements::div;
 
-        // clang-format off
-        return div{
-            class_ = "example-page__card"
-        }(
-            "Page "s + std::to_string(page + 1)
-        );
-        // clang-format on
+        if (page < 0 || page >= static_cast<int>(impl_->examples.size()))
+            return div{class_ = "example-page__card"}();
+
+        return (*impl_->examples[page])();
     }
     //---------------------------------------------------------------------------------------------------------------------
     ExamplePage::~ExamplePage() = default;
@@ -65,38 +68,45 @@ namespace NuiPage
         using namespace Nui;
         using namespace Nui::Elements;
         using namespace Nui::Attributes;
-        using Nui::Elements::div; // because of the global div.
+        using Nui::Elements::div;
+
+        std::vector<int> options;
+        for (int i = 0; i < static_cast<int>(impl_->examples.size()); ++i)
+            options.push_back(i);
 
         // clang-format off
-        return div{
-            class_ = "example-page"
-        }(
+        return div{class_ = "example-page"}(
             ScriptNuiComponents::select(
                 SelectOptions<decltype(impl_->page), std::vector<int>>{
                     .activeOption = impl_->page,
-                    .options = {
-                        0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
-                        10,11,12,13,14,15,16,17,18,19
-                    },
+                    .options = std::move(options),
                     .onChange = [this](int newPage, Nui::WebApi::MouseEvent)
                     {
                         *impl_->page = newPage;
                     },
-                    .activeRenderer = [](std::weak_ptr<Nui::Observed<int>>& option) -> ElementRenderer
+                    .activeRenderer = [this](std::weak_ptr<Nui::Observed<int>>& option) -> ElementRenderer
                     {
                         auto locked = option.lock();
                         if (!locked)
                             return div{class_ = "example-page__select-active"}("Example #?");
                         return div{class_ = "example-page__select-active"}(
                             observe(option),
-                            [](int page) -> std::string {
-                                return "Example #"s + std::to_string(page + 1);
+                            [this](int page) -> std::string {
+                                if (page < 0 || page >= static_cast<int>(impl_->examples.size()))
+                                    return "Example #?";
+                                return fmt::format("Example #{}: {}", page + 1, impl_->examples[page]->heading());
                             }
                         );
                     },
-                    .elementRenderer = [](int option) -> ElementRenderer
+                    .elementRenderer = [this](int option) -> ElementRenderer
                     {
-                        return div{class_ = "example-page__select-option"}("Example #"s + std::to_string(option + 1));
+                        return div{class_ = "example-page__select-option"}(
+                            [this](int page) -> std::string {
+                                if (page < 0 || page >= static_cast<int>(impl_->examples.size()))
+                                    return "Example #?";
+                                return fmt::format("Example #{}: {}", page + 1, impl_->examples[page]->heading());
+                            }(option)
+                        );
                     },
                     .makeId = []() -> std::string
                     {

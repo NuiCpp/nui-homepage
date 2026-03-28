@@ -63,7 +63,11 @@ namespace NuiPage
                 )
             ),
             a{
-                class_ = "github-fork-ribbon",
+                class_ = Nui::observe(impl_->fragment).generate([](const std::string& frag) -> std::string {
+                    return frag == "examples"
+                        ? "github-fork-ribbon github-fork-ribbon--hidden"
+                        : "github-fork-ribbon";
+                }),
                 href = "https://github.com/NuiCpp/Nui",
                 data_ribbon = "Fork me on GitHub",
                 Nui::Attributes::title = "Fork me on GitHub"

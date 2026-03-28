@@ -12,6 +12,11 @@ target_sources(${PROJECT_NAME}
         cards/conditional_rendering_card.cpp
         cards/basic_card.cpp
         cards/list_card.cpp
+        examples/basic_example.cpp
+        examples/button_counter.cpp
+        examples/button_counter_assist.cpp
+        examples/text_counter.cpp
+        examples/text_counter_assist.cpp
 )
 
 set_common_options(nui-homepage)

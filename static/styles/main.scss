@@ -25,3 +25,13 @@ body {
   opacity: 1 !important;
   filter: blur(0) !important;
 }
+
+.github-fork-ribbon--hidden {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  .github-fork-ribbon {
+    display: none !important;
+  }
+}

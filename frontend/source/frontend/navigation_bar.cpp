@@ -77,7 +77,7 @@ namespace NuiPage
                 a {
                     class_ = "dropdown-item",
                     href = "#examples"
-                }("More Examples")
+                }("Examples")
             )
         );
         // clang-format on
