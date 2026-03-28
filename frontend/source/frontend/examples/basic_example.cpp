@@ -134,7 +134,11 @@ namespace NuiPage
                 },
             }(
                 div{class_ = "example__editor-section"}(
-                    div{class_ = "example__tabs"}(
+                    div{class_ = "example__tabs",
+                    "mousedown"_event = [this](Nui::val event) {
+                        event.call<void>("stopPropagation");
+                    },
+                }(
                         ScriptNuiComponents::button({
                             .text = "Header",
                             .attributes = {
@@ -176,13 +180,20 @@ namespace NuiPage
                                     emscripten::val::global("createCodeMirror")(
                                         element->val(), emscripten::val{c}, emscripten::val{true}
                                     );
-                                }
+                                },
+                                "mousedown"_event = [this](Nui::val event) {
+                                    event.call<void>("stopPropagation");
+                                },
                             }();
                         }
                     )
                 ),
                 div{class_ = "example__resizer"}(),
-                div{class_ = "example__output"}(
+                div{class_ = "example__output",
+                    "mousedown"_event = [this](Nui::val event) {
+                        event.call<void>("stopPropagation");
+                    },
+                }(
                     render()
                 )
             )

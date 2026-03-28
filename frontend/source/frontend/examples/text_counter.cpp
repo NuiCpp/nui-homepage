@@ -14,7 +14,7 @@ namespace NuiPage
         // clang-format off
         return div{class_ = "text-counter"}(
             input{
-                class_ = "form-control",
+                class_ = "script-nui-text-input",
                 type = "text",
                 placeHolder = "Type something...",
                 onInput = [this](auto const& event) {

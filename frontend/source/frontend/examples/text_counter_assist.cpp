@@ -15,17 +15,23 @@ namespace NuiPage
 
     std::string TextCounter::editorContentHeader() const
     {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wc23-extensions"
         return
         {
 #embed "../../../include/frontend/examples/text_counter.hpp"
         };
+#pragma clang diagnostic pop
     }
 
     std::string TextCounter::editorContentSource() const
     {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wc23-extensions"
         return
         {
 #embed "text_counter.cpp"
         };
+#pragma clang diagnostic pop
     }
 }

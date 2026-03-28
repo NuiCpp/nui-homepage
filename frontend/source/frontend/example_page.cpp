@@ -3,6 +3,8 @@
 #include <frontend/examples/button_counter.hpp>
 #include <frontend/examples/text_counter.hpp>
 #include <frontend/examples/two_way_binding.hpp>
+#include <frontend/examples/set_timeout_example.hpp>
+#include <frontend/examples/range_table.hpp>
 
 #include <script-nui-components/select.hpp>
 #include <script-nui-components/carousel.hpp>
@@ -34,6 +36,8 @@ namespace NuiPage
         impl_->examples.push_back(std::make_unique<ButtonCounter>());
         impl_->examples.push_back(std::make_unique<TextCounter>());
         impl_->examples.push_back(std::make_unique<TwoWayBinding>());
+        impl_->examples.push_back(std::make_unique<SetTimeoutExample>());
+        impl_->examples.push_back(std::make_unique<RangeTable>());
 
         impl_->carousel = std::make_unique<Carousel>(Carousel{
             impl_->page,

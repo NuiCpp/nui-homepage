@@ -1,0 +1,7 @@
+:root {
+    font-size: 16px;
+    --body-color: #17141d;
+    --script-nui-components-field-border-radius: 0.25rem;
+    --script-nui-components-field-background-color: color-mix(in srgb, #17141d 95%, white);
+    --script-nui-components-button-color-regular: color-mix(in srgb, #17141d 95%, white);
+}

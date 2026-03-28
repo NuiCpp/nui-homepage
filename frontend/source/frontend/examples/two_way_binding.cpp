@@ -16,7 +16,7 @@ namespace NuiPage
         // clang-format off
         return div{class_ = "two-way-binding"}(
             input{
-                class_ = "form-control",
+                class_ = "script-nui-text-input",
                 type = "text",
                 // value attribute is for intial value, value prop is dynamic
                 "value"_prop = name_,

@@ -19,6 +19,10 @@ target_sources(${PROJECT_NAME}
         examples/text_counter_assist.cpp
         examples/two_way_binding.cpp
         examples/two_way_binding_assist.cpp
+        examples/set_timeout_example.cpp
+        examples/set_timeout_example_assist.cpp
+        examples/range_table.cpp
+        examples/range_table_assist.cpp
 )
 
 set_common_options(nui-homepage)

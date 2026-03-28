@@ -20,7 +20,8 @@ namespace NuiPage
             class_ = "button-counter",
         }(
             button{
-                class_ = "btn btn-primary",
+                class_ = "script-nui-button",
+                "data-variant"_attr = "primary",
                 onClick =
                     [this]()
                 {

@@ -9,18 +9,24 @@ namespace NuiPage
 
     std::string ButtonCounter::editorContentHeader() const
     {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wc23-extensions"
         return
         {
 #embed "../../../include/frontend/examples/button_counter.hpp"
         };
+#pragma clang diagnostic pop
     }
 
     std::string ButtonCounter::editorContentSource() const
     {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wc23-extensions"
         return
         {
 #embed "button_counter.cpp"
         };
+#pragma clang diagnostic pop
     }
 
     std::string ButtonCounter::explanation() const

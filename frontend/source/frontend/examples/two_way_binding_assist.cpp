@@ -16,17 +16,23 @@ namespace NuiPage
 
     std::string TwoWayBinding::editorContentHeader() const
     {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wc23-extensions"
         return
         {
 #embed "../../../include/frontend/examples/two_way_binding.hpp"
         };
+#pragma clang diagnostic pop
     }
 
     std::string TwoWayBinding::editorContentSource() const
     {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wc23-extensions"
         return
         {
 #embed "two_way_binding.cpp"
         };
+#pragma clang diagnostic pop
     }
 }

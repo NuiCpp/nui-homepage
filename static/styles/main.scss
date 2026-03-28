@@ -16,9 +16,13 @@ body {
   font-family: "Montserrat", monospace !important;
 }
 
-#PageFrameContent {
+#pageFrameContent {
   padding: $gap;
-  padding-top: calc(3 * $gap);
+  padding-top: $navbar-height;
+}
+
+.github-fork-ribbon {
+  top: $navbar-height !important;
 }
 
 .visible {

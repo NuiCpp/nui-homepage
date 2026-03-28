@@ -1,6 +1,7 @@
 #pragma once
 
 #include <nui/frontend/element_renderer.hpp>
+#include <nui/event_system/observed_value.hpp>
 
 #include <memory>
 
