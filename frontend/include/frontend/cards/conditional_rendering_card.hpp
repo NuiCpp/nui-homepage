@@ -20,7 +20,7 @@ namespace NuiPage
         std::string source() const override;
         std::string header() const override;
         std::string description() const override;
-        Nui::ElementRenderer render() const override;
+        Nui::ElementRenderer render() override;
 
       private:
         struct Implementation;

@@ -32,7 +32,7 @@ namespace NuiPage
                     onClick = []{ counter = 0; }
                 }("Clear"),
                 div{}(
-                    span{}("Counter: "), 
+                    span{}("Counter: "),
                     span{}(counter)
                 )
             )
@@ -52,7 +52,7 @@ namespace NuiPage
                "The Observed class is a wrapper around a value that allows you to observe changes to the value. ";
     }
     //---------------------------------------------------------------------------------------------------------------------
-    Nui::ElementRenderer SimpleReactiveCard::render() const
+    Nui::ElementRenderer SimpleReactiveCard::render()
     {
         using namespace Nui;
         using namespace Nui::Elements;
@@ -73,7 +73,7 @@ namespace NuiPage
                 class_ = "btn btn-primary"
             }("Clear"),
             div{}(
-                span{}("Counter: "), 
+                span{}("Counter: "),
                 span{}(*counter)
             )
         );

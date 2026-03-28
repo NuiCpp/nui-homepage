@@ -3,6 +3,7 @@
 #include <frontend/about.hpp>
 #include <frontend/main_content.hpp>
 #include <frontend/navigation_bar.hpp>
+#include <frontend/example_page.hpp>
 
 #include <nui/frontend/api/console.hpp>
 #include <nui/frontend/attributes.hpp>
@@ -21,6 +22,7 @@ namespace NuiPage
         NavigationBar navBar;
         MainContent mainContent;
         AboutPage aboutPage;
+        ExamplePage examples;
 
         Nui::Observed<std::string> fragment;
     };
@@ -56,15 +58,20 @@ namespace NuiPage
                         "Unexpected Fragment"
                     )),
                     case_("")(impl_->mainContent()),
-                    case_("about")(impl_->aboutPage())
+                    case_("about")(impl_->aboutPage()),
+                    case_("examples")(impl_->examples())
                 )
             ),
             a{
-                class_ = "github-fork-ribbon",
+                class_ = Nui::observe(impl_->fragment).generate([](const std::string& frag) -> std::string {
+                    return frag == "examples"
+                        ? "github-fork-ribbon github-fork-ribbon--hidden"
+                        : "github-fork-ribbon";
+                }),
                 href = "https://github.com/NuiCpp/Nui",
                 data_ribbon = "Fork me on GitHub",
                 Nui::Attributes::title = "Fork me on GitHub"
-            }("Fork me on GitHub")            
+            }("Fork me on GitHub")
         );
         // clang-format on
     }

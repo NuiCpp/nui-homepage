@@ -10,7 +10,7 @@ namespace NuiPage
     class BasicCard : public std::enable_shared_from_this<BasicCard>
     {
       public:
-        Nui::ElementRenderer operator()() const;
+        Nui::ElementRenderer operator()();
 
         template <class Derived>
         std::shared_ptr<Derived const> shared_from_base() const
@@ -37,7 +37,7 @@ namespace NuiPage
         virtual std::string source() const = 0;
         virtual std::string header() const = 0;
         virtual std::string description() const = 0;
-        virtual Nui::ElementRenderer render() const = 0;
+        virtual Nui::ElementRenderer render() = 0;
 
         static std::string removeIndentation(std::string const& str);
     };

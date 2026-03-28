@@ -12,6 +12,19 @@
   padding: 2em;
   width: 100%;
   overflow: hidden;
+  position: relative;
+
+  // Accent line separating the cards section from the showcase above
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 64px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba($primary, 0.55), transparent);
+  }
 
   @media screen and (max-width: $tablet) {
     padding: 3px;
@@ -67,27 +80,46 @@
 }
 
 .card-header {
-  padding: $gap;
-  border-bottom: 1px solid $border-color;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.025);
 }
 
 .card-subtitle {
   margin-bottom: 0;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: rgba($body-color, 0.45);
+  letter-spacing: 0.01em;
 }
 
 .card-title {
-  font-size: 1.5rem;
+  // font-family: 'Syne', sans-serif;
+  font-size: 1.25rem;
   font-weight: 700;
   margin-top: 0;
+  margin-bottom: 0.2rem;
+  letter-spacing: -0.02em;
 }
 
 .card {
   display: flex;
   flex-direction: column;
   width: 85%;
-  border: solid 1px $border-color;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
+  border: solid 1px rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.45),
+    0 2px 8px rgba(0, 0, 0, 0.25);
   overflow: scroll;
+  background: rgba(255, 255, 255, 0.02);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow:
+      0 14px 48px rgba(0, 0, 0, 0.55),
+      0 4px 14px rgba(0, 0, 0, 0.3);
+  }
 
   @media screen and (max-width: $tablet) {
     width: 100%;
@@ -99,11 +131,11 @@
   max-width: 750px;
 
   @media screen and (max-width: $tablet) {
-    border-bottom: 1px solid $body-color;
+    border-bottom: 1px solid rgba($body-color, 0.12);
   }
 
   @media screen and (min-width: $tablet) {
-    border-right: 1px solid $body-color;
+    border-right: 1px solid rgba($body-color, 0.1);
   }
 }
 

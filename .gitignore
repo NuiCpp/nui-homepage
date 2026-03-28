@@ -4,4 +4,5 @@ build_
 .vscode
 dependencies
 node_modules
-scripts
+.clangd
+.claude

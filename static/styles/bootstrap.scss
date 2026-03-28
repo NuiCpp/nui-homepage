@@ -1,10 +1,10 @@
 $gap: 5px;
-$border-color: rgba(255, 255, 255, 0.5);
+$border-color: rgba(255, 255, 255, 0.12);
 
 $navbar-height: 48px;
 $navbar-height-sm: 36px;
 
-$primary: #1c72cf;
+$primary: #2b7de9;
 $secondary: #6c757d;
 $success: #28a745;
 $danger: #dc3545;
@@ -17,9 +17,9 @@ $body-bg: #17141d;
 $body-bg-dark1: mix($body-bg, black, 95%);
 $body-bg-dark2: mix($body-bg, black, 70%);
 $body-color: #e0e0e0;
-$border-radius: 0px;
-$border-radius-sm: 0px;
-$border-radius-lg: 0px;
+$border-radius: 5px;
+$border-radius-sm: 3px;
+$border-radius-lg: 8px;
 $form-check-input-bg: #aaa;
 
 $theme-colors: (

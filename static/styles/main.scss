@@ -1,5 +1,6 @@
 @import "./bootstrap.scss";
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+@import "./example_page.scss";
 
 *,
 *:before,
@@ -12,15 +13,29 @@ body {
   margin: 0;
   background: $body-bg;
   color: $body-color;
-  font-family: "Montserrat", monospace !important;
+  font-family: "DM Sans", system-ui, sans-serif;
 }
 
-#PageFrameContent {
+#pageFrameContent {
   padding: $gap;
-  padding-top: calc(3 * $gap);
+  padding-top: $navbar-height;
+}
+
+.github-fork-ribbon {
+  top: $navbar-height !important;
 }
 
 .visible {
   opacity: 1 !important;
   filter: blur(0) !important;
+}
+
+.github-fork-ribbon--hidden {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  .github-fork-ribbon {
+    display: none !important;
+  }
 }

@@ -24,12 +24,10 @@ namespace NuiPage
 
         // clang-format off
         return div{
-            style = Style{
-                "width"_style = fmt::format("{}px", args.width),
-                "height"_style = fmt::format("{}px", args.height),
-                "background-color"_style = "#a1232b",
-                "border"_style = "1px solid black",
-            }
+            style = fmt::format(
+                "width: {}px; height: {}px; background-color: #a1232b; border: 1px solid black;",
+                args.width, args.height
+            )
         }(args.textContent);
         // clang-format on
     }
@@ -49,12 +47,10 @@ namespace NuiPage
             {
                 // clang-format off
                 return div{
-                    style = Style{
-                        "width"_style = fmt::format("{}px", args.width),
-                        "height"_style = fmt::format("{}px", args.height),
-                        "background-color"_style = "#a1232b",
-                        "border"_style = "1px solid black",
-                    }
+                    style = fmt::format(
+                        "width: {}px; height: {}px; background-color: #a1232b; border: 1px solid black;",
+                        args.width, args.height
+                    )
                 }(args.textContent);
                 // clang-format on
             }
@@ -63,8 +59,8 @@ namespace NuiPage
             Observed<std::string> textContent = "Hello World!";
             div{}(
                 prettyBox({
-                    .width = 200, 
-                    .height = 80, 
+                    .width = 200,
+                    .height = 80,
                     .textContent = textContent
                 })
             )
@@ -81,7 +77,7 @@ namespace NuiPage
         return "Elements can be compounded as Components via simple functions or function objects.";
     }
     //---------------------------------------------------------------------------------------------------------------------
-    Nui::ElementRenderer FunctionComponentCard::render() const
+    Nui::ElementRenderer FunctionComponentCard::render()
     {
         return Nui::Elements::fragment(prettyBox({.width = 200, .height = 80, .textContent = "Hello World!"}));
     }
