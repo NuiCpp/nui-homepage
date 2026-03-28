@@ -59,6 +59,16 @@ namespace NuiPage
                 span{class_ = "nav__burger-bar"}()
             ),
 
+            // Overlay — intercepts outside clicks to close the menu on mobile
+            div{
+                class_ = observe(impl_->menuOpen).generate([](bool open) {
+                    return open ? std::string{"nav__overlay"} : std::string{"nav__overlay nav__overlay--hidden"};
+                }),
+                onClick = [this]() {
+                    impl_->menuOpen = false;
+                }
+            }(),
+
             // Links — hidden on mobile until burger is pressed
             div{
                 class_ = observe(impl_->menuOpen).generate([](bool open) {
@@ -93,8 +103,16 @@ namespace NuiPage
                         )
                     )
                 ),
-                a{class_ = "nav__link nav__item", href = "#about"}("About"),
-                a{class_ = "nav__link nav__item", href = "#examples"}("Examples")
+                a{
+                    class_ = "nav__link nav__item",
+                    href = "#about",
+                    onClick = [this]() { impl_->menuOpen = false; }
+                }("About"),
+                a{
+                    class_ = "nav__link nav__item",
+                    href = "#examples",
+                    onClick = [this]() { impl_->menuOpen = false; }
+                }("Examples")
             )
         );
         // clang-format on

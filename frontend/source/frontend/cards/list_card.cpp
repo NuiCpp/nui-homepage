@@ -151,7 +151,7 @@ namespace NuiPage
                     class_ = "btn btn-primary"
                 }("Add Name")
             ),
-            table{}(
+            table{class_ = "range-table__table"}(
                 thead{}(
                     tr{}(
                         th{}(""),

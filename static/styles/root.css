@@ -1,7 +1,23 @@
 :root {
     font-size: 16px;
     --body-color: #17141d;
-    --script-nui-components-field-border-radius: 0.25rem;
-    --script-nui-components-field-background-color: color-mix(in srgb, #17141d 95%, white);
-    --script-nui-components-button-color-regular: color-mix(in srgb, #17141d 95%, white);
+
+    /* nui-components field overrides */
+    --script-nui-components-field-border-radius: 5px;
+    --script-nui-components-field-background-color: color-mix(in srgb, #17141d 92%, white);
+    --script-nui-components-button-color-regular: color-mix(in srgb, #17141d 90%, white);
+
+    /* Surface layers */
+    --surface-1: rgba(255, 255, 255, 0.02);
+    --surface-2: rgba(255, 255, 255, 0.05);
+
+    /* Borders */
+    --border-subtle: rgba(255, 255, 255, 0.07);
+    --border-default: rgba(255, 255, 255, 0.12);
+    --border-emphasis: rgba(255, 255, 255, 0.2);
+
+    /* Text hierarchy */
+    --text-muted: rgba(224, 224, 224, 0.28);
+    --text-secondary: rgba(224, 224, 224, 0.55);
+    --text-primary: rgba(224, 224, 224, 0.9);
 }

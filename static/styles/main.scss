@@ -1,5 +1,5 @@
 @import "./bootstrap.scss";
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "./example_page.scss";
 
 *,
@@ -13,7 +13,7 @@ body {
   margin: 0;
   background: $body-bg;
   color: $body-color;
-  font-family: "Montserrat", monospace !important;
+  font-family: "DM Sans", system-ui, sans-serif;
 }
 
 #pageFrameContent {

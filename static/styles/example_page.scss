@@ -28,11 +28,15 @@
     &__heading {
         margin: 0;
         font-size: 1.4rem;
+        -webkit-user-select: none;
+        user-select: none;
     }
 
     &__explanation {
         margin: 0;
         opacity: 0.8;
+        -webkit-user-select: none;
+        user-select: none;
     }
 
     &__body {
