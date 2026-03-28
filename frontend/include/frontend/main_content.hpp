@@ -18,6 +18,8 @@ namespace NuiPage
 
         Nui::ElementRenderer operator()();
 
+        void show(bool show);
+
       private:
         struct Implementation;
         std::unique_ptr<Implementation> impl_;

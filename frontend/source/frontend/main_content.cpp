@@ -51,6 +51,8 @@ namespace NuiPage
 
         Nui::Observed<int> stars{-1};
         Nui::Observed<int> forks{-1};
+
+        Nui::Observed<bool> shown{true};
     };
     // #####################################################################################################################
     MainContent::MainContent()
@@ -84,6 +86,11 @@ namespace NuiPage
             );
     }
     //---------------------------------------------------------------------------------------------------------------------
+    void MainContent::show(bool show)
+    {
+        impl_->shown = show;
+    }
+    //---------------------------------------------------------------------------------------------------------------------
     MainContent::~MainContent() = default;
     //---------------------------------------------------------------------------------------------------------------------
     MainContent::MainContent(MainContent&&) = default;
@@ -99,7 +106,15 @@ namespace NuiPage
         using Nui::Elements::span;
 
         // clang-format off
-        return div{id = "pageContent"}(
+        return div{
+            id = "pageContent",
+            style = observe(impl_->shown).generate([](bool shown) {
+                return fmt::format(
+                    "display: {};",
+                    shown ? "flex" : "none"
+                );
+            })
+        }(
             div{id = "titleBox"}(
                 div{id = "pageTitle"}(
                     "Nui WebView Library"

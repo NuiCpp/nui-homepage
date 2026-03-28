@@ -9,6 +9,10 @@
 #include <nui/frontend/attributes.hpp>
 #include <nui/frontend/elements.hpp>
 #include <nui/frontend/utility/fragment_listener.hpp>
+#include <nui/frontend/utility/stabilize.hpp>
+#include <nui/event_system/listen.hpp>
+
+#include <fmt/format.h>
 
 using namespace std::string_literals;
 
@@ -24,13 +28,33 @@ namespace NuiPage
         AboutPage aboutPage;
         ExamplePage examples;
 
-        Nui::Observed<std::string> fragment;
+        Nui::Observed<std::string> fragment{""};
+        Nui::ListenRemover<decltype(fragment)> listenRemover;
     };
     // #####################################################################################################################
     PageFrame::PageFrame()
         : impl_{std::make_unique<Implementation>()}
     {
         Nui::listenToFragmentChanges(impl_->fragment);
+
+        impl_->listenRemover = Nui::smartListen(
+            impl_->fragment,
+            [this](const std::string& frag)
+            {
+                // trim whitespace from frag:
+                std::string_view fragView = frag;
+                while (!fragView.empty() && std::isspace(fragView.front()))
+                    fragView.remove_prefix(1);
+                while (!fragView.empty() && std::isspace(fragView.back()))
+                    fragView.remove_suffix(1);
+
+                impl_->mainContent.show(fragView.empty() || fragView == "home");
+                impl_->aboutPage.show(fragView == "about");
+                impl_->examples.show(fragView == "examples");
+
+                Nui::globalEventContext.executeActiveEventsImmediately();
+            }
+        );
     }
     //---------------------------------------------------------------------------------------------------------------------
     PageFrame::~PageFrame() = default;
@@ -49,18 +73,12 @@ namespace NuiPage
         // clang-format off
         return body{}(
             impl_->navBar(),
-            // "Nui.Router" so to speak
             div{
                 id = "pageFrameContent"
             }(
-                switch_(impl_->fragment)(
-                    Elements::default_()(div{}(
-                        "Unexpected Fragment"
-                    )),
-                    case_("")(impl_->mainContent()),
-                    case_("about")(impl_->aboutPage()),
-                    case_("examples")(impl_->examples())
-                )
+                impl_->mainContent(),
+                impl_->aboutPage(),
+                impl_->examples()
             ),
             a{
                 class_ = Nui::observe(impl_->fragment).generate([](const std::string& frag) -> std::string {

@@ -18,6 +18,8 @@ namespace NuiPage
 
         Nui::ElementRenderer operator()();
 
+        void show(bool show);
+
       private:
         Nui::ElementRenderer renderPage(int page);
 

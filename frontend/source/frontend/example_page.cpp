@@ -26,6 +26,8 @@ namespace NuiPage
         std::shared_ptr<Nui::Observed<int>> page;
         std::unique_ptr<Carousel> carousel;
         std::vector<std::unique_ptr<BasicExample>> examples;
+
+        Nui::Observed<bool> shown{false};
     };
     // #####################################################################################################################
     ExamplePage::ExamplePage()
@@ -49,6 +51,11 @@ namespace NuiPage
             std::min(5, static_cast<int>(impl_->examples.size())),
             CarouselControlsPosition::Bottom
         });
+    }
+    //---------------------------------------------------------------------------------------------------------------------
+    void ExamplePage::show(bool show)
+    {
+        impl_->shown = show;
     }
     //---------------------------------------------------------------------------------------------------------------------
     Nui::ElementRenderer ExamplePage::renderPage(int page)
@@ -81,7 +88,15 @@ namespace NuiPage
             options.push_back(i);
 
         // clang-format off
-        return div{class_ = "example-page"}(
+        return div{
+            class_ = "example-page",
+            style = observe(impl_->shown).generate([](bool shown) {
+                return fmt::format(
+                    "display: {};",
+                    shown ? "flex" : "none"
+                );
+            })
+        }(
             ScriptNuiComponents::select(
                 SelectOptions<decltype(impl_->page), std::vector<int>>{
                     .activeOption = impl_->page,

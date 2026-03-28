@@ -3,6 +3,8 @@
 #include <nui/frontend/attributes.hpp>
 #include <nui/frontend/elements.hpp>
 
+#include <fmt/format.h>
+
 MAKE_HTML_VALUE_ATTRIBUTE_RENAME(data_github, "data-github")
 MAKE_HTML_VALUE_ATTRIBUTE_RENAME(data_width, "data-width")
 MAKE_HTML_VALUE_ATTRIBUTE_RENAME(data_height, "data-height")
@@ -12,7 +14,9 @@ namespace NuiPage
 {
     // #####################################################################################################################
     struct AboutPage::Implementation
-    {};
+    {
+        Nui::Observed<bool> shown{false};
+    };
     // #####################################################################################################################
     AboutPage::AboutPage()
         : impl_{std::make_unique<Implementation>()}
@@ -24,6 +28,11 @@ namespace NuiPage
     //---------------------------------------------------------------------------------------------------------------------
     AboutPage& AboutPage::operator=(AboutPage&&) = default;
     //---------------------------------------------------------------------------------------------------------------------
+    void AboutPage::show(bool show)
+    {
+        impl_->shown = show;
+    }
+    //---------------------------------------------------------------------------------------------------------------------
     Nui::ElementRenderer AboutPage::operator()()
     {
         using namespace Nui;
@@ -32,12 +41,20 @@ namespace NuiPage
         using Nui::Elements::div; // because of the global div.
 
         // clang-format off
-        return div{id = "aboutPage"}(
+        return div{
+            id = "aboutPage",
+            style = observe(impl_->shown).generate([](bool shown) {
+                return fmt::format(
+                    "display: {};",
+                    shown ? "block" : "none"
+                );
+            })
+        }(
             div{}(
                 h1{style = "text-align:center"}("About Nui"),
                 p{style = "text-align:center"}("The Nui project is free and fully open source and available on GitHub."),
                 p{style = "text-align:center"}("Contributions are welcome!")
-            ),  
+            ),
             section{class_ = "card_about-list"}(
                 article{class_ = "card_about"}(
                     header{class_ = "card_about-header"}(
