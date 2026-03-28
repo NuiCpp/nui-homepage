@@ -125,16 +125,15 @@ namespace NuiPage
         return div{class_ = "example"}(
             h2{class_ = "example__heading"}(heading()),
             p{class_ = "example__explanation"}(explanation()),
-            div{class_ = "example__body"}(
-                div{
-                    class_ = "example__editor-section",
-                    "touchstart"_event = [this](Nui::val event) {
-                        event.call<void>("stopPropagation");
-                    },
-                    "touchmove"_event = [this](Nui::val event) {
-                        event.call<void>("stopPropagation");
-                    },
-                }(
+            div{class_ = "example__body",
+                "touchstart"_event = [this](Nui::val event) {
+                    event.call<void>("stopPropagation");
+                },
+                "touchmove"_event = [this](Nui::val event) {
+                    event.call<void>("stopPropagation");
+                },
+            }(
+                div{class_ = "example__editor-section"}(
                     div{class_ = "example__tabs"}(
                         ScriptNuiComponents::button({
                             .text = "Header",
@@ -164,7 +163,7 @@ namespace NuiPage
 
                         })
                     ),
-                    fragment(
+                    div{}(
                         Nui::observe(activeTab_),
                         [this](int tab) -> Nui::ElementRenderer {
                             std::string content = preconditionContent((tab == 0) ? editorContentHeader() : editorContentSource());

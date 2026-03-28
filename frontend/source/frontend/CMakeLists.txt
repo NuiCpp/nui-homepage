@@ -17,6 +17,8 @@ target_sources(${PROJECT_NAME}
         examples/button_counter_assist.cpp
         examples/text_counter.cpp
         examples/text_counter_assist.cpp
+        examples/two_way_binding.cpp
+        examples/two_way_binding_assist.cpp
 )
 
 set_common_options(nui-homepage)

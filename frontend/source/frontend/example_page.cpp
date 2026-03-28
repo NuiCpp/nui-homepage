@@ -2,6 +2,7 @@
 #include <frontend/examples/basic_example.hpp>
 #include <frontend/examples/button_counter.hpp>
 #include <frontend/examples/text_counter.hpp>
+#include <frontend/examples/two_way_binding.hpp>
 
 #include <script-nui-components/select.hpp>
 #include <script-nui-components/carousel.hpp>
@@ -32,6 +33,7 @@ namespace NuiPage
     {
         impl_->examples.push_back(std::make_unique<ButtonCounter>());
         impl_->examples.push_back(std::make_unique<TextCounter>());
+        impl_->examples.push_back(std::make_unique<TwoWayBinding>());
 
         impl_->carousel = std::make_unique<Carousel>(Carousel{
             impl_->page,
